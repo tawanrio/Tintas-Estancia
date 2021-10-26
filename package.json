@@ -1,0 +1,22 @@
+{
+  "name": "tintas-estancia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tawanrio/Tintas-Estancia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tawanrio/Tintas-Estancia/issues"
+  },
+  "homepage": "https://github.com/tawanrio/Tintas-Estancia#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}

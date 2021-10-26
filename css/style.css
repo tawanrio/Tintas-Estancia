@@ -1,1 +1,19 @@
-css
+html{ margin-top: -2px;}
+#principal{
+    background-color: rgb(243, 226, 226);
+   
+    min-height: 500px;
+}
+.txtAutoAten{
+    text-align: center;
+    background-color: red;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+}
+.telaHome{
+    background-color: rgb(166, 166, 175);
+    min-height:450px;
+}
+.nav{
+    text-align: center;
+}
