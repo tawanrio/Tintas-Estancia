@@ -2,7 +2,7 @@ html{ margin-top: -2px;}
 #principal{
     background-color: rgb(243, 226, 226);
    
-    min-height: 500px;
+  
 }
 .txtAutoAten{
     text-align: center;
@@ -15,5 +15,8 @@ html{ margin-top: -2px;}
     min-height:450px;
 }
 .nav{
-    text-align: center;
+  
+}
+.linha1{
+    height: 60px;
 }
