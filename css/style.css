@@ -1,8 +1,10 @@
 html{ margin-top: -2px;}
 #principal{
     background-color: rgb(243, 226, 226);
-   
   
+}
+.linha1{
+    height: 60px;
 }
 .txtAutoAten{
     text-align: center;
@@ -14,9 +16,16 @@ html{ margin-top: -2px;}
     background-color: rgb(166, 166, 175);
     min-height:450px;
 }
-.nav{
-  
+.botao{
+  width: 130px;
+  height: 50px;
+  background-color: rgb(68, 57, 57);
+  margin: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
 }
-.linha1{
-    height: 60px;
+.navProd{
+    background-color: red;
+    height: 30px;
 }
