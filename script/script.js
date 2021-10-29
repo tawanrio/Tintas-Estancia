@@ -2,118 +2,400 @@ const navProd = document.querySelector('.navProd');
 const navServ = document.querySelector('.navServ');
 const navOutr = document.querySelector('.navOutr');
 const nav = document.querySelector('.nav');
+var codigoLocal = [];
+
+telaIni();
 
 
+function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
+    var nomeVar = document.createElement("BUTTON");
+    nomeVar.id=nomeId;
+    nomeVar.className=nomeClass;
+    nomeVar.innerHTML=texto;
+    nav.insertAdjacentElement('beforeend', nomeVar);
+}
+function criaElementoBtnVoltar(nome){
+    var nome = document.createElement("BUTTON");
+    nome.id='voltar';
+    nome.className='botao';
+    nome.innerHTML='Voltar';
+    document.querySelector('.nav').insertAdjacentElement('beforeend', nome);
+}
+function criaElementoDiv(nomeVar,nomeId,nomeClass,texto){
+    var nomeVar = document.createElement("div");
+    nomeVar.id=nomeId;
+    nomeVar.className=nomeClass;
+    nomeVar.innerHTML=texto;
+    nav.insertAdjacentElement('beforeend', nomeVar);
+}
+function funCodigoLocal(codigoItem){
+    let getCodigoItem = String(codigoItem);
+    var getCodigoAtual = 0;
+    if(codigoLocal[codigoLocal.length] == undefined){
+         getCodigoAtual = String(codigoLocal[codigoLocal.length])
+         alert('teste');
+    }    
+    let pullCodigo = getCodigoAtual + getCodigoItem;
+    codigoLocal.push(pullCodigo);
+    console.log(getCodigoAtual);
+    
+
+    //console.log;
+}
 function telaIni(){
 
-    const produtos = document.createElement("BUTTON");
-    produtos.id='prod';
-    produtos.className='botao';
-    produtos.innerHTML="Produtos";
-    nav.insertAdjacentElement('beforeend', produtos);
+    criaElementoBtn('[produtos','prod','botao','Produtos');
+    criaElementoBtn('servicos','serv','botao','Serviços');
+    criaElementoBtn('outrs','outr','botao','Outros');
 
-    const servicos = document.createElement("BUTTON");
-    servicos.id='serv';
-    servicos.className='botao';
-    servicos.innerHTML="Serviços";
-    nav.insertAdjacentElement('beforeend', servicos);
-
-
-    const outros = document.createElement("BUTTON");
-    outros.id='outr';
-    outros.className='botao';
-    outros.innerHTML="Outros";
-    nav.insertAdjacentElement('beforeend', outros);
-
-
+ 
     document.querySelector('#prod').addEventListener('click', function(){
         nav.innerHTML="";
         telaProd();
-        
-    })
-    
-    
+        funCodigoLocal(1);
+        console.log(typeof(codigoLocal),codigoLocal);
+    })   
 }
 
 function telaProd(){
 
-    const residencial = document.createElement("BUTTON");
-    residencial.id='resid';
-    residencial.className='botao';
-    residencial.innerHTML="Tinta Residencial";
-    nav.insertAdjacentElement('beforeend', residencial);
+    criaElementoBtn('imobiliario','imobi','botao','Imobiliario');
+    criaElementoBtn('automotivo','autom','botao','Automotivo');
+    criaElementoBtn('utensilio','utens','botao','Utensílio');
+    criaElementoBtnVoltar('voltar');
 
-    const automotivo = document.createElement("BUTTON");
-    automotivo.id='autom';
-    automotivo.className='botao';
-    automotivo.innerHTML="Tinta Automotivo";
-    nav.insertAdjacentElement('beforeend', automotivo);
-
-
-    const utensilio = document.createElement("BUTTON");
-    utensilio.id='utens';
-    utensilio.className='botao';
-    utensilio.innerHTML="Utensilios";
-    nav.insertAdjacentElement('beforeend', utensilio);
-
-    document.querySelector('#resid').addEventListener('click', function(){
+        document.querySelector('#imobi').addEventListener('click', function(){
         nav.innerHTML="";
-        telaResid();
+        telaImobi();
+        funCodigoLocal(1);
+        console.log(codigoLocal);
+        
+    })
+    document.querySelector('#autom').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaAutom();
+        funCodigoLocal(2);
+        console.log(codigoLocal);
+        
+    })
+    document.querySelector('#utens').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaUtens();
+        
+    })
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaIni();
+        codigoLocal.pop();
+        console.log(codigoLocal);
         
     })
 }
 
-function telaResid(){
+function telaImobi(){
 
-    const prodParede = document.createElement("BUTTON");
-    prodParede.id='prodPared';
-    prodParede.className='botao';
-    prodParede.innerHTML="Produto para Parede";
-    nav.insertAdjacentElement('beforeend', prodParede);
+    criaElementoBtn('prodParede','prodParede','botao','Produto para Parede');
+    criaElementoBtn('prodPiso','prodPiso','botao','Produto para Piso');
+    criaElementoBtn('prodTeto','prodTeto','botao','Produto para Teto');
+    criaElementoBtn('prodFerro','prodFerro','botao','Produto para Ferro');
+    criaElementoBtn('prodMadeira','prodMadeira','botao','Produto para Madeira');
+    criaElementoBtnVoltar('voltar');
 
-    const prodPiso = document.createElement("BUTTON");
-    prodPiso.id='prodPiso';
-    prodPiso.className='botao';
-    prodPiso.innerHTML="Produto para Piso";
-    nav.insertAdjacentElement('beforeend', prodPiso);
+    document.querySelector('#prodParede').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaProdParede();
+        funCodigoLocal(1);
+        console.log(codigoLocal);
+        
+    })
+    document.querySelector('#prodPiso').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaProdPiso();
+        funCodigoLocal(2);
+        console.log(codigoLocal);
+        
+    })
+    document.querySelector('#prodTeto').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaProdParede();
+        codigoLocal.push('3');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#prodFerro').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaProdFerro();
+        codigoLocal.push('4');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#prodMadeira').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaProdMadeira();
+        codigoLocal.push('5');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaProd();
+        codigoLocal.pop();
+        console.log(codigoLocal);
+        
+    })
+}
 
-    const prodTeto = document.createElement("BUTTON");
-    prodTeto.id='prodTeto';
-    prodTeto.className='botao';
-    prodTeto.innerHTML="Produto para Piso";
-    nav.insertAdjacentElement('beforeend', prodTeto);
+function telaProdParede(){
 
-    const prodFerro = document.createElement("BUTTON");
-    prodFerro.id='prodFerro';
-    prodFerro.className='botao';
-    prodFerro.innerHTML="Produto para Ferro";
-    nav.insertAdjacentElement('beforeend', prodFerro);
+    criaElementoBtn('tintaParede','tintaPa','botao','Tinta');
+    criaElementoBtn('massaCorrida','massaCo','botao','Massa Corrida');
+    criaElementoBtn('massaAcrilica','massaAc','botao','Massa Acrílica');
+    criaElementoBtn('selador','selador','botao','Selador Acrílico');
+    criaElementoBtn('lixa','lixa','botao','Lixa');
+    criaElementoBtnVoltar('voltar');
 
+    document.querySelector('#tintaPa').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('1');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#massaCo').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('2');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#massaAc').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('3');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#selador').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('4');
+        console.log(codigoLocal);
+    })
+    document.querySelector('#lixa').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('5');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaImobi();
+        codigoLocal.pop();
+        console.log(codigoLocal);
+        
+    })
+}
 
-    const prodMadei = document.createElement("BUTTON");
-    prodMadei.id='prodMadei';
-    prodMadei.className='botao';
-    prodMadei.innerHTML="Produto para Madeira";
-    nav.insertAdjacentElement('beforeend', prodMadei);
+function telaProdPiso(){
+    
+    criaElementoBtn('tintaPiso','tintaPiso','botao','Tinta Piso');
+    criaElementoBtn('rejunte','rejunte','botao','Rejunte ');
+    criaElementoBtn('limpaPiso','limpaPiso','botao','Limpa Piso ');
+    criaElementoBtn('lixa','lixa','botao','Lixa');
+    criaElementoBtnVoltar('voltar');
+
+    document.querySelector('#tintaPiso').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('1');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#rejunte').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('2');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#limpaPiso').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('3');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#lixa').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('4');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaImobi();
+        codigoLocal.pop();
+        console.log(codigoLocal);
+        
+    })
 }
 
 
-telaIni();
-eventos();
+function telaProdFerro(){
+    criaElementoBtn('tintaFerro','tintaFerro','botao','Tinta Ferro');
+    criaElementoBtn('zarcao','zarcao','botao','Zarcão');
+    criaElementoBtn('galvite','galvite','botao','Galvite');
+    criaElementoBtn('lixa','lixa','botao','Lixa');
 
-function eventos(){
+    criaElementoBtnVoltar('voltar');
 
+    document.querySelector('#tintaFerro').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('1');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#zarcao').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('2');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#galvite').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('3');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#lixa').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('4');
+        console.log(codigoLocal);
+        
+    }) 
+    
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaImobi();
+        
+    })
 
+}
+function telaProdMadeira(){
+    criaElementoBtn('tintaMadeira','tintaMadeira','botao','Tinta Madeira');
+    criaElementoBtn('verniz','verniz','botao','Verniz');
+    criaElementoBtn('polisten','polisten','botao','Polisten');
+    criaElementoBtn('seladora','seladora','botao','Seladora');
+    criaElementoBtn('tingidor','tingidor','botao','Tingidor');
+    criaElementoBtn('betume','betume','botao','Betume da Judeia');
+    criaElementoBtn('massaMadeira','massaMadeira','botao','Massa para Madeira');
+    criaElementoBtn('lixa','lixa','botao','Lixa');
+    
+    criaElementoBtnVoltar('voltar');
+    document.querySelector('#tintaMadeira').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('1');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#verniz').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('2');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#polisten').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('3');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#seladora').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('4');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#tingidor').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('5');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#betume').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('6');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#massaMadeira').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaPrimeiraSegundaLinha();
+        codigoLocal.push('7');
+        console.log(codigoLocal);
+        
+    }) 
+    document.querySelector('#lixa').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('8');
+        console.log(codigoLocal);
+        
+    }) 
 
-
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaImobi();
+        codigoLocal.pop();
+        console.log(codigoLocal);
+        
+    })
 
 }
 
+function telaPrimeiraSegundaLinha(){
 
-function prodAutom(){
-    const prodAutom = document.createElement("BUTTON");
-    prodAutom.id='autom';
-    automotivo.className='botao';
-    prodAutom.innerHTML="Tinta Automotiva";
-    nav.insertAdjacentElement('beforeend', prodAutom);
+    criaElementoBtn('linhaPremium','linhaPrem','botao','Primeira Linha');
+    criaElementoBtn('linhaStand','linhaStand','botao','Segunda Linha');
+    criaElementoBtnVoltar('voltar');
+ 
+    document.querySelector('#linhaPrem').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('1');
+        console.log(codigoLocal);
+        
+    })
+    document.querySelector('#linhaStand').addEventListener('click', function(){
+        nav.innerHTML="";
+        listaProd();
+        codigoLocal.push('2');
+        console.log(codigoLocal);
+        
+    })
+    
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaImobi();
+        codigoLocal.pop();
+        console.log(codigoLocal);
+        
+    })
 }
+function listaProd(){
+    criaElementoDiv('listaProduto','listaProd','lista','Aqui será inserido a lista de produto');
+  
+}
+
+
+function btnVoltar(){
+    let getCodigoLocal = codigoLocal;
+
+}
+
