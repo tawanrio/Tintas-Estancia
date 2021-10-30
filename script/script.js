@@ -2,6 +2,7 @@ const navProd = document.querySelector('.navProd');
 const navServ = document.querySelector('.navServ');
 const navOutr = document.querySelector('.navOutr');
 const nav = document.querySelector('.nav');
+var codigoFim;
 var codigoLocal = [];
 
 telaIni();
@@ -29,18 +30,16 @@ function criaElementoDiv(nomeVar,nomeId,nomeClass,texto){
     nav.insertAdjacentElement('beforeend', nomeVar);
 }
 function funCodigoLocal(codigoItem){
-    let getCodigoItem = String(codigoItem);
-    var getCodigoAtual = 0;
-    if(codigoLocal[codigoLocal.length] == undefined){
-         getCodigoAtual = String(codigoLocal[codigoLocal.length])
-         alert('teste');
-    }    
-    let pullCodigo = getCodigoAtual + getCodigoItem;
-    codigoLocal.push(pullCodigo);
-    console.log(getCodigoAtual);
     
-
-    //console.log;
+    codigoLocal.push(codigoItem);
+    console.log(codigoLocal);
+    
+}
+function buscaItem(){
+    codigoFim =0;
+    for(let i = 0 ;i < codigoLocal.length; i++){
+        codigoFim += codigoLocal[i];
+    }
 }
 function telaIni(){
 
@@ -52,8 +51,8 @@ function telaIni(){
     document.querySelector('#prod').addEventListener('click', function(){
         nav.innerHTML="";
         telaProd();
-        funCodigoLocal(1);
-        console.log(typeof(codigoLocal),codigoLocal);
+        funCodigoLocal('1');
+        //console.log(typeof(codigoLocal),codigoLocal);
     })   
 }
 
@@ -67,14 +66,14 @@ function telaProd(){
         document.querySelector('#imobi').addEventListener('click', function(){
         nav.innerHTML="";
         telaImobi();
-        funCodigoLocal(1);
-        console.log(codigoLocal);
+        funCodigoLocal('1');
+       // console.log(codigoLocal);
         
     })
     document.querySelector('#autom').addEventListener('click', function(){
         nav.innerHTML="";
         telaAutom();
-        funCodigoLocal(2);
+        funCodigoLocal('2');
         console.log(codigoLocal);
         
     })
@@ -104,14 +103,14 @@ function telaImobi(){
     document.querySelector('#prodParede').addEventListener('click', function(){
         nav.innerHTML="";
         telaProdParede();
-        funCodigoLocal(1);
+        funCodigoLocal('1');
         console.log(codigoLocal);
         
     })
     document.querySelector('#prodPiso').addEventListener('click', function(){
         nav.innerHTML="";
         telaProdPiso();
-        funCodigoLocal(2);
+        funCodigoLocal('2');
         console.log(codigoLocal);
         
     })
@@ -343,8 +342,8 @@ function telaProdMadeira(){
     }) 
     document.querySelector('#lixa').addEventListener('click', function(){
         nav.innerHTML="";
-        listaProd();
         codigoLocal.push('8');
+        listaProd();
         console.log(codigoLocal);
         
     }) 
@@ -367,15 +366,15 @@ function telaPrimeiraSegundaLinha(){
  
     document.querySelector('#linhaPrem').addEventListener('click', function(){
         nav.innerHTML="";
-        listaProd();
         codigoLocal.push('1');
+        listaProd();
         console.log(codigoLocal);
         
     })
     document.querySelector('#linhaStand').addEventListener('click', function(){
         nav.innerHTML="";
-        listaProd();
         codigoLocal.push('2');
+        listaProd();
         console.log(codigoLocal);
         
     })
@@ -390,12 +389,15 @@ function telaPrimeiraSegundaLinha(){
 }
 function listaProd(){
     criaElementoDiv('listaProduto','listaProd','lista','Aqui será inserido a lista de produto');
-  
-}
+    buscaItem();
+    console.log(codigoFim);
+   
+  }
 
 
 function btnVoltar(){
-    let getCodigoLocal = codigoLocal;
+    buscaItem();
+    console.log(codigoFim);
 
 }
 
