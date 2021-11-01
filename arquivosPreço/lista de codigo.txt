@@ -1,0 +1,43 @@
+011111= latex/ac primeira linha
+011112 = latex/ac segundalinha
+011121 = massa corrida primeira linha
+011122 = massa corrida segunda linha
+011131 = massa acrilica primeira linha
+011132 = massa acrilica segunda linha
+011141 = selador acrilico primeira linha
+011142 = selador acrilico segunda linha  
+01115 = lixa
+
+011211 = tinta piso primeira linha 
+011212 = tinta piso segunda linha
+01122 = rejunte
+01123 = limpa piso
+01124 = lixa
+
+011311= latex/ac primeira linha
+011312 = latex/ac segundalinha
+011321 = massa corrida primeira linha
+011322 = massa corrida segunda linha
+011331 = massa acrilica primeira linha
+011332 = massa acrilica segunda linha
+011341 = selador acrilico primeira linha
+011342 = selador acrilico segunda linha  
+01135 = lixa 
+
+011411 = tinta ferro primeira linha 
+011412 = tinta ferro segunda linha 
+01142 = zarcao
+01143 = galvite
+01144 = lixa
+
+011511 = tinta madeira primeira linha 
+011512 = tinta madeira segunda linha 
+011521 = verniz madeira primeira linha 
+011522 = verniz madeira segunda linha 
+011531 = polisten primeira linha 
+011532 = polisten segunda linha 
+01154 = seladora
+01155 = tingidor
+01156 = betume
+01157 = massa para madeira
+01157 = lixa

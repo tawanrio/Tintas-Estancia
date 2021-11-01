@@ -65,16 +65,16 @@ function telaProd(){
 
         document.querySelector('#imobi').addEventListener('click', function(){
         nav.innerHTML="";
-        telaImobi();
         funCodigoLocal('1');
+        telaImobi();
        // console.log(codigoLocal);
         
     })
     document.querySelector('#autom').addEventListener('click', function(){
         nav.innerHTML="";
-        telaAutom();
         funCodigoLocal('2');
-        console.log(codigoLocal);
+        telaAutom();
+      
         
     })
     document.querySelector('#utens').addEventListener('click', function(){
@@ -84,8 +84,8 @@ function telaProd(){
     })
     document.querySelector('#voltar').addEventListener('click', function(){
         nav.innerHTML="";
-        telaIni();
         codigoLocal.pop();
+        telaIni();
         console.log(codigoLocal);
         
     })
@@ -102,40 +102,39 @@ function telaImobi(){
 
     document.querySelector('#prodParede').addEventListener('click', function(){
         nav.innerHTML="";
-        telaProdParede();
         funCodigoLocal('1');
-        console.log(codigoLocal);
+        telaProdParede();
+      
         
     })
     document.querySelector('#prodPiso').addEventListener('click', function(){
         nav.innerHTML="";
-        telaProdPiso();
         funCodigoLocal('2');
-        console.log(codigoLocal);
+        telaProdPiso();
         
     })
     document.querySelector('#prodTeto').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('3');
         telaProdParede();
-        codigoLocal.push('3');
-        console.log(codigoLocal);
+       
     })
     document.querySelector('#prodFerro').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('4');
         telaProdFerro();
-        codigoLocal.push('4');
-        console.log(codigoLocal);
+        
     })
     document.querySelector('#prodMadeira').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('5');
         telaProdMadeira();
-        codigoLocal.push('5');
-        console.log(codigoLocal);
+     
     })
     document.querySelector('#voltar').addEventListener('click', function(){
         nav.innerHTML="";
-        telaProd();
         codigoLocal.pop();
+        telaProd();
         console.log(codigoLocal);
         
     })
@@ -152,33 +151,33 @@ function telaProdParede(){
 
     document.querySelector('#tintaPa').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('1');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('1');
-        console.log(codigoLocal);
+        
     })
     document.querySelector('#massaCo').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('2');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('2');
-        console.log(codigoLocal);
+        
     })
     document.querySelector('#massaAc').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('3');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('3');
-        console.log(codigoLocal);
+        
     })
     document.querySelector('#selador').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('4');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('4');
-        console.log(codigoLocal);
+      
     })
     document.querySelector('#lixa').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('5');
         listaProd();
-        codigoLocal.push('5');
-        console.log(codigoLocal);
+        
         
     }) 
     document.querySelector('#voltar').addEventListener('click', function(){
@@ -200,31 +199,28 @@ function telaProdPiso(){
 
     document.querySelector('#tintaPiso').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('1');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('1');
-        console.log(codigoLocal);
-        
+      
+    
     }) 
     document.querySelector('#rejunte').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('2');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('2');
-        console.log(codigoLocal);
-        
+               
     }) 
     document.querySelector('#limpaPiso').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('3');
         listaProd();
-        codigoLocal.push('3');
-        console.log(codigoLocal);
-        
+                
     }) 
     document.querySelector('#lixa').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('4');
         listaProd();
-        codigoLocal.push('4');
-        console.log(codigoLocal);
-        
+                
     }) 
     document.querySelector('#voltar').addEventListener('click', function(){
         nav.innerHTML="";
@@ -246,30 +242,26 @@ function telaProdFerro(){
 
     document.querySelector('#tintaFerro').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('1');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('1');
-        console.log(codigoLocal);
         
     }) 
     document.querySelector('#zarcao').addEventListener('click', function(){
         nav.innerHTML="";
-        telaPrimeiraSegundaLinha();
-        codigoLocal.push('2');
-        console.log(codigoLocal);
+        funCodigoLocal('2');
+        listaProd();
         
     }) 
     document.querySelector('#galvite').addEventListener('click', function(){
         nav.innerHTML="";
-        telaPrimeiraSegundaLinha();
-        codigoLocal.push('3');
-        console.log(codigoLocal);
+        listaProd();
+        funCodigoLocal('3');
         
     }) 
     document.querySelector('#lixa').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('4');
         listaProd();
-        codigoLocal.push('4');
-        console.log(codigoLocal);
         
     }) 
     
@@ -294,15 +286,13 @@ function telaProdMadeira(){
     document.querySelector('#tintaMadeira').addEventListener('click', function(){
         nav.innerHTML="";
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('1');
-        console.log(codigoLocal);
+        funCodigoLocal('1');
         
     }) 
     document.querySelector('#verniz').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('2');
         telaPrimeiraSegundaLinha();
-        codigoLocal.push('2');
-        console.log(codigoLocal);
         
     }) 
     document.querySelector('#polisten').addEventListener('click', function(){
@@ -314,37 +304,33 @@ function telaProdMadeira(){
     }) 
     document.querySelector('#seladora').addEventListener('click', function(){
         nav.innerHTML="";
-        telaPrimeiraSegundaLinha();
-        codigoLocal.push('4');
-        console.log(codigoLocal);
+        funCodigoLocal('4');
+        listaProd();
         
     }) 
     document.querySelector('#tingidor').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('5');
         listaProd();
-        codigoLocal.push('5');
-        console.log(codigoLocal);
         
     }) 
     document.querySelector('#betume').addEventListener('click', function(){
         nav.innerHTML="";
+        funCodigoLocal('6');
         listaProd();
-        codigoLocal.push('6');
-        console.log(codigoLocal);
         
     }) 
     document.querySelector('#massaMadeira').addEventListener('click', function(){
         nav.innerHTML="";
-        telaPrimeiraSegundaLinha();
-        codigoLocal.push('7');
-        console.log(codigoLocal);
+        funCodigoLocal('7');
+        listaProd();
         
     }) 
     document.querySelector('#lixa').addEventListener('click', function(){
         nav.innerHTML="";
-        codigoLocal.push('8');
+        funCodigoLocal('8');
         listaProd();
-        console.log(codigoLocal);
+     
         
     }) 
 
@@ -366,17 +352,15 @@ function telaPrimeiraSegundaLinha(){
  
     document.querySelector('#linhaPrem').addEventListener('click', function(){
         nav.innerHTML="";
-        codigoLocal.push('1');
+        funCodigoLocal('1');
         listaProd();
-        console.log(codigoLocal);
-        
+              
     })
     document.querySelector('#linhaStand').addEventListener('click', function(){
         nav.innerHTML="";
-        codigoLocal.push('2');
+        funCodigoLocal('2');
         listaProd();
-        console.log(codigoLocal);
-        
+                
     })
     
     document.querySelector('#voltar').addEventListener('click', function(){
