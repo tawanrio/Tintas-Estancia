@@ -1,0 +1,19 @@
+--------------COMANDOS SQL-----------------
+
+SHOW DATABASES;
+	- lista os bancos de dados
+
+USE "nome do banco de dados";
+	-entra no banco de dados
+SHOW TABLES;
+	- lista as tabelas
+
+DESCRIBE "nome da tabela";
+	-descreve a composição da tabela
+
+SELECT * FROM "nome da tabela";
+	-lista os dados da tabela; 
+
+INSERT INTO "nome da tabela" VALUES
+('valores na sequencia da tabela')
+
