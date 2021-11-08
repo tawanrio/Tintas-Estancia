@@ -3,6 +3,30 @@
 SHOW DATABASES;
 	- lista os bancos de dados
 
+CREATE DATABASE "nome do banco de dados";
+	-cria um banco de dados
+
+CREATE TABLE "nome da tabela";
+	-cria tabela
+
+DROP DATABASE "nome do banco de dados";
+	-deleta banco de dados
+
+DROP TABLE "nome da tabela";
+	-deleta tabela
+
+ALTER TABLE "nome da tabela"
+ADD "nome da coluna" "parametros da coluna ex: varchar(20)";
+	-adiciona coluna na tabela
+
+ALTER TABLE "nome da tabela"
+DROP"nome da coluna";
+	-deleta coluna na tabela
+
+ALTER TABLE "nome da tabela"
+MODIFY COLUMN "nome da coluna" "parametros da coluna ex: varchar(20)";
+	-altera coluna na tabela
+
 USE "nome do banco de dados";
 	-entra no banco de dados
 SHOW TABLES;
@@ -11,9 +35,29 @@ SHOW TABLES;
 DESCRIBE "nome da tabela";
 	-descreve a composição da tabela
 
-SELECT * FROM "nome da tabela";
-	-lista os dados da tabela; 
 
 INSERT INTO "nome da tabela" VALUES
 ('valores na sequencia da tabela')
 
+UPDATE "nome da tabela" SET "nome da coluna a ser alterada" = "alteração" WHERE "coluna conf como PRIMARY KEY" = "identificação da linha";
+	-altera conteudo de alguma coluna
+	- EX UPDATE cursos SET descricao = "Curso de MYSQL" WHERE 		idcurso = '4';
+DROP "nome do banco de dados";
+
+
+SELECT * FROM "nome da tabela";
+	-lista os dados da tabela
+
+SELECT "nome da coluna ", "nome da coluna" FROM "nome da tabela";
+	-lista os dados das colunas inseridas
+
+SELECT * FROM cursos
+WHERE nome = 'php';
+	-seleciona na tabela cursos todas linhas com nome igual php
+
+SELECT * FROM cursos
+WHERE nome LIKE '%PHP%';
+	-seleciona na tabela cursos todas as linha que contenham php no nome
+
+SELECT count(*) FROM cursos WHERE carga > 40;
+	- conta quantos registro possue com carga maior que 40
