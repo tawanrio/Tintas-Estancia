@@ -19,33 +19,54 @@ include ('conexao.php');
 
 <table border="1" width="550">
     <tr>
+        <th>Id</th>
         <th>Codigo</th>
         <th>Descricao</th>
+        <th>Un</th>
         <th>Preco</th>
     </tr>
-   
+    <?php
+    if (!isset($_GET['busca'])) {
+    ?>
     <tr>
-        <td colspan="3">Digite algo para Pesquisar</td>
+        <td colspan="5">Digite algo para Pesquisar</td>
     </tr>
-
      
 </table>
 
 <?php
 
+}else{
+$pesquisa = $conexao->real_escape_string($_GET['busca']);
 
-$pesquisa = $_GET['busca'];
+$consulta = "SELECT * FROM produtos
+WHERE descricao LIKE '%$pesquisa%'
+OR codigoL LIKE '%$pesquisa%' ";
+$con = $conexao->query($consulta) or die($conexao->error);
+if($con->num_rows ==0){
+    ?>
+<tr>
+    <td colspan="5">Nenhum resultado encontrado.</td>
+</tr>
+<?php
+}else{
+    while($dados= $con->fetch_assoc()){
+        ?>
+        <tr>
+            <td><?php echo $dados['id']; ?></td>
+            <td><?php echo $dados['codigoL']; ?></td>
+            <td><?php echo $dados['descricao'];?> </td>
+            <td><?php echo $dados['unidade'];?>  </td>
+            <td><?php echo "R$ ".$dados['preco'];?></td>
 
-$consulta = "SELECT * FROM produtos WHERE descricao LIKE '%$pesquisa%'";
-
-$con = $mysqli->query($consulta) or die($mysqli->error);
-
-
-while($dados= mysqli_fetch_assoc($con)){
-    echo "<tr>".$dados['codigoL']."</tr><br><br>";
-    echo "<tr>".$dados['descricao']."</tr><br><br>";
-    echo "<tr>".$dados['preco']."</tr><br>";
+        </tr>
+    <?php
+    }
 }
+?>
+<?php
+
+
 
 
 
@@ -58,7 +79,8 @@ while($dados= mysqli_fetch_assoc($con)){
 
 
 
-
+}
 ?>
+
 </body>
 </html>

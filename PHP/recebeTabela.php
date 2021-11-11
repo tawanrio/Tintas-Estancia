@@ -2,6 +2,7 @@
 
 include 'conexao.php';
 
+
 if (!empty($_FILES['arquivo']['tmp_name'])) {
    $arquivo = new DOMDocument;
    $arquivo->load($_FILES['arquivo']['tmp_name']);
