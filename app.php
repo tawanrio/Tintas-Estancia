@@ -28,12 +28,10 @@
                             <div class="row linha1"></div>
                             
                             <div class="row justify-content-md-center m-2 nav"> </div>
-                            <form  id="form" class=" justify-content-md-center ">
-                                <input type="text" name="nome" id="nome" autocomplete="off" placeholder="digite o nome">
-                                <input type="text" name="idade" id="idade" autocomplete="off" placeholder="digite a idade">
-                                <input class=" botao" id="buscar" name="buscar "type="button" value="Buscar">
-                            </form>
-                            <div id="resposta">teste</div>
+                            <div  id="busca" class=" justify-content-md-center ">
+                                <div id="btnBuscar"></div>
+                            </div>
+                            <div id="resposta"></div>
                         </div>
                     </div>
                 </div>
@@ -45,8 +43,9 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="script/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script src="script/scriptJquery.js"></script>
 <script src="script/script.js"></script>
 </body>

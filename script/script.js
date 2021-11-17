@@ -2,19 +2,16 @@ const navProd = document.querySelector('.navProd');
 const navServ = document.querySelector('.navServ');
 const navOutr = document.querySelector('.navOutr');
 const nav = document.querySelector('.nav');
-const navForm = document.querySelector('#form');
+const navBusca = document.querySelector('#busca');
 var codigoFim;
 var codigoLocal = [];
 var buscar;
 telaIni();
 
 
-if (buscar == true) {
-    nav.style.display = 'none';
-    console.log(buscar);  
-}
-console.log(buscar);  
-navForm.style.display = 'none';
+    
+
+navBusca.style.display = 'none';
 function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
     nomeVar.id=nomeId;
@@ -379,19 +376,33 @@ function telaPrimeiraSegundaLinha(){
     })
 }
 function listaProd(){
-  //  criaElementoDiv('listaProduto','listaProd','lista','Aqui será inserido a lista de produto');
-    navForm.style.display = 'flex';
-    if (buscar == false){
-        buscar = true;   
-        alert('buscar true');
-        console.log(buscar);     
-    }
+              
     buscaItem();
-    console.log(codigoFim);
+     
+        var codigoPhp = JSON.stringify(codigoFim);
+      
+            $.ajax({
+                url:"PHP/recebeDados.php",
+               type: 'post',
+               data:{data: codigoPhp},
+               success: function(resposta){
+                $("#resposta").html(resposta);
+            },
+                       
+            error: function(){
+                $("#resposta").html("Erro ajax");
+            }
+            });
+        
+          
+     
+    
+  //  criaElementoDiv('listaProduto','listaProd','lista','Aqui será inserido a lista de produto');
+    navBusca.style.display = 'flex';
+          
+    }
+ 
    
-  }
-
-
 function btnVoltar(){
     buscaItem();
     console.log(codigoFim);
