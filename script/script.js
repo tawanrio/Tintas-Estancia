@@ -3,6 +3,7 @@ const navServ = document.querySelector('.navServ');
 const navOutr = document.querySelector('.navOutr');
 const nav = document.querySelector('.nav');
 const navBusca = document.querySelector('#busca');
+const navResp = document.querySelector('#resposta');
 var codigoFim;
 var codigoLocal = [];
 var buscar;
@@ -12,6 +13,8 @@ telaIni();
     
 
 navBusca.style.display = 'none';
+navResp.style.display = 'none';
+
 function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
     nomeVar.id=nomeId;
@@ -26,8 +29,8 @@ function criaElementoBtnVoltar(nome){
     nome.innerHTML='Voltar';
     document.querySelector('.nav').insertAdjacentElement('beforeend', nome);
 }
-function criaElementoDiv(nomeVar,nomeId,nomeClass,texto){
-    var nomeVar = document.createElement("div");
+function criaElementoDiv(tipo,nomeVar,nomeId,nomeClass,texto){
+    var nomeVar = document.createElement(tipo);
     nomeVar.id=nomeId;
     nomeVar.className=nomeClass;
     nomeVar.innerHTML=texto;
@@ -40,14 +43,14 @@ function funCodigoLocal(codigoItem){
     
 }
 function buscaItem(){
-    codigoFim =0;
+    codigoFim =[];
     for(let i = 0 ;i < codigoLocal.length; i++){
         codigoFim += codigoLocal[i];
     }
 }
 function telaIni(){
 
-    criaElementoBtn('[produtos','prod','botao','Produtos');
+    criaElementoBtn('produtos','prod','botao','Produtos');
     criaElementoBtn('servicos','serv','botao','Serviços');
     criaElementoBtn('outrs','outr','botao','Outros');
 
@@ -119,7 +122,9 @@ function telaImobi(){
     })
     document.querySelector('#prodTeto').addEventListener('click', function(){
         nav.innerHTML="";
-        funCodigoLocal('3');
+        //funCodigoLocal('3');
+        codigoLocal = [];
+        codigoLocal =['1','1','1']
         telaProdParede();
        
     })
@@ -156,7 +161,7 @@ function telaProdParede(){
     document.querySelector('#tintaPa').addEventListener('click', function(){
         nav.innerHTML="";
         funCodigoLocal('1');
-        telaPrimeiraSegundaLinha();
+        telaInternoExterno();
         
     })
     document.querySelector('#massaCo').addEventListener('click', function(){
@@ -211,7 +216,7 @@ function telaProdPiso(){
     document.querySelector('#rejunte').addEventListener('click', function(){
         nav.innerHTML="";
         funCodigoLocal('2');
-        telaPrimeiraSegundaLinha();
+        listaProd();
                
     }) 
     document.querySelector('#limpaPiso').addEventListener('click', function(){
@@ -222,7 +227,9 @@ function telaProdPiso(){
     }) 
     document.querySelector('#lixa').addEventListener('click', function(){
         nav.innerHTML="";
-        funCodigoLocal('4');
+        codigoLocal = [];
+        codigoLocal =['1','1','1','5']
+        //funCodigoLocal('4');
         listaProd();
                 
     }) 
@@ -375,10 +382,40 @@ function telaPrimeiraSegundaLinha(){
         
     })
 }
+function telaInternoExterno(){
+ 
+    criaElementoBtn('interno','interno','botao','Interno');
+    criaElementoBtn('externo','externo','botao','Externo');
+
+    document.querySelector('#interno').addEventListener('click', function(){
+        nav.innerHTML="";
+        funCodigoLocal('1');
+        telaPrimeiraSegundaLinha();
+                
+    })
+    document.querySelector('#externo').addEventListener('click', function(){
+        nav.innerHTML="";
+        funCodigoLocal('2');
+        telaPrimeiraSegundaLinha();
+                
+    })
+
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
+        telaImobi();
+        codigoLocal.pop();
+        console.log(codigoLocal);
+        
+    })
+} 
+
+
 function listaProd(){
               
     buscaItem();
-     
+    navResp.style.display = 'block';
+    navBusca.style.display = 'block';
+     criaElementoDiv('table','table','tab','table table-bordered font-weight-bold table-dark table-hover','<td class="col-8  text-center">Descricao</td><td class="col-2 text-center">Unidade</td><td class="col-3 text-center">Preço</td>');
         var codigoPhp = JSON.stringify(codigoFim);
       
             $.ajax({
@@ -387,19 +424,12 @@ function listaProd(){
                data:{data: codigoPhp},
                success: function(resposta){
                 $("#resposta").html(resposta);
-            },
-                       
+            },     
             error: function(){
                 $("#resposta").html("Erro ajax");
             }
             });
-        
-          
-     
-    
-  //  criaElementoDiv('listaProduto','listaProd','lista','Aqui será inserido a lista de produto');
-    navBusca.style.display = 'flex';
-          
+                        
     }
  
    

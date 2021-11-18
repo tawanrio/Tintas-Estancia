@@ -31,7 +31,10 @@
                             <div  id="busca" class=" justify-content-md-center ">
                                 <div id="btnBuscar"></div>
                             </div>
-                            <div id="resposta"></div>
+                            <div  id="resposta" >
+
+                          
+                            </div>
                         </div>
                     </div>
                 </div>

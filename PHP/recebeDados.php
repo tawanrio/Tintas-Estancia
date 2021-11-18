@@ -14,17 +14,31 @@ try {
 
 $usuario = $_POST['data'];
 
-
   $dados = json_decode($usuario, true);
+  echo json_encode($dados);
 
-echo json_encode($dados);
-
-
-$sql = $pdo->query("SELECT * FROM produtos WHERE descricao LIKE '%$dados%' ");
+$sql = $pdo->query("SELECT * FROM produtos WHERE grupoProd LIKE '$dados' ");
 
 if($sql->rowCount() > 0){
+   
     foreach($sql->fetchAll() as $value){
-        echo $value['descricao']."<br>";
+        ?>
+        <div class=" justify-content-md-center m-2">
+        
+    <table class="table table-bordered table-dark table-hover">
+            <tr >      
+               
+                <td class="col text-left"><?php echo $value['descricao'];?> </td>
+                <td class="col text-center"><?php echo $value['unidade'];?>  </td>
+                <td class="col text-center"><?php echo "R$ ".$value['preco'];?></td>
+                
+            </tr>
+        </table>
+        </div>
+            
+            
+        
+    <?php
         
     }
 }
