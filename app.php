@@ -25,16 +25,16 @@
                     <div class="col">
                         
                         <div class="telaHome">
-                            <div class="row linha1"></div>
+                            <div class="row linha1 justify-content-md-center"></div>
                             
                             <div class="row justify-content-md-center m-2 nav"> </div>
-                            <div  id="busca" class=" justify-content-md-center ">
-                                <div id="btnBuscar"></div>
-                            </div>
-                            <div  id="resposta" >
 
-                          
-                            </div>
+
+                            <div  id="busca" class="row ini justify-content-md-center">
+                                    <div  id="resposta" ></div>                    
+                             </div>
+                             <div id="voltarIni" class="row justify-content-md-center"></div>
+
                         </div>
                     </div>
                 </div>

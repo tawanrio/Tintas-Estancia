@@ -15,8 +15,7 @@ try {
 $usuario = $_POST['data'];
 
   $dados = json_decode($usuario, true);
-  echo json_encode($dados);
-
+ 
 $sql = $pdo->query("SELECT * FROM produtos WHERE grupoProd LIKE '$dados' ");
 
 if($sql->rowCount() > 0){
