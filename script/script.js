@@ -18,7 +18,8 @@ navResp.style.display = 'none';
 function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
     nomeVar.id=nomeId;
-    nomeVar.className=nomeClass;
+     
+    nomeVar.className='botao col-11';
     nomeVar.innerHTML=texto;
     nav.insertAdjacentElement('beforeend', nomeVar);
     
