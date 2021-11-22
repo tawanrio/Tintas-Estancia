@@ -1,22 +1,47 @@
-html{ margin-top: -2px;}
-#principal{
-    background-color: rgb(243, 226, 226);
+html{ margin-top: 0px;}
+.principal{
+    margin-top: 40px;
+    border: solid black 2px;
+    box-shadow: 0px 3px 7px 7px rgba(0, 0, 0, 0.4)
   
 }
 .linha1{
     height: 35px;
+    font-size: 15px;
+    color:rgb(17, 11, 11) ;
     
+    text-align: center; 
+}
+.txtAutoAten>hr{
+    border: 0;
+    height: 10px;
+    background-image: linear-gradient(to right, rgba(84, 70, 122, 0.8) 10%, rgb(0, 0, 0), rgba(84, 70, 122, 0.8)); 
+}
+.nav{
+    position: relative;
 }
 
-
+.txtAutoAten>h1{
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right,rgb(253, 5, 5), rgb(250, 124, 7), rgb(251, 255, 5), rgb(5, 255, 17),rgb(2, 17, 3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px; /* largura da borda */
+    -webkit-text-stroke-color: rgba(48, 45, 45); /* cor da borda */
+     
+}
 .txtAutoAten{
     text-align: center;
-    background-color: red;
+    background:rgba(84, 70, 122, 0.8);
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     color: white;
-}
+    
+ }
 .telaHome{
-    background-color: rgb(166, 166, 175);
+    
+    background-image: linear-gradient(to bottom right, rgba(84, 70, 122, 0.8) 40%, rgba(170, 72, 72, 0.8));
     min-height:450px;
 }
 #voltar{
@@ -27,26 +52,41 @@ html{ margin-top: -2px;}
     text-align: center;
     font-size: 35px;
     font-weight: bold;
-    background-color: rgb(68, 57, 57);
 }
+#tab{
+    background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
+    color: white;
+    border: solid black 2px;
+   
+}
+
 .botao{
   
   height: 50px;
-    border: solid black 3px;
+    border: solid black 2px;
   background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
-  margin: 10px;
   font-weight: bold;
+  margin: 10px;
   font-size: 20px;
   color: white;
  }
- .botao:hover{
+ .botao:hover,.resp:hover{
     background-image: linear-gradient(to bottom right,  rgba(180, 4, 4),rgba(21, 1, 78 ));
  }
  
+.resp{
+    background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
+    border: solid black 2px;
+    color: white;
+    font-weight: bold;
+    margin: 5px 0px 5px 0px ;
+    cursor: pointer;
+   
+    font-size: 13px;
+}
 
- 
-
-.navProd{
-    background-color: red;
-    height: 30px;
+.respd{
+    padding: 8px;
+  
+    
 }

@@ -19,7 +19,7 @@ function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
     nomeVar.id=nomeId;
      
-    nomeVar.className='botao col-11';
+    nomeVar.className=nomeClass +' col-11 botao rounded-pill';
     nomeVar.innerHTML=texto;
     nav.insertAdjacentElement('beforeend', nomeVar);
     
@@ -27,7 +27,7 @@ function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
 function criaElementoBtnVoltar(nome){
     var nome = document.createElement("BUTTON");
     nome.id='voltar';
-    nome.className='botao';
+    nome.className='botao col-11  rounded-pill';
     nome.type="button";
     nome.innerHTML='Voltar';
     document.querySelector('.nav').insertAdjacentElement('beforeend', nome);
@@ -35,7 +35,7 @@ function criaElementoBtnVoltar(nome){
 function criaElementoBtnVoltarBusca(nome){
     var nome = document.createElement("BUTTON");
     nome.id='voltar';
-    nome.className='botao col-11 ';
+    nome.className='botao col-11  rounded-pill ';
     nome.type="button ";   
     nome.innerHTML='Voltar';
     document.querySelector('#voltarIni').insertAdjacentElement('beforeend', nome);
@@ -497,9 +497,9 @@ function listaProd(){
     buscaItem();
     navResp.style.display = 'block';
     navBusca.style.display = 'block';
-     criaElementoDiv('table','table','tab','table table-bordered font-weight-bold table-dark table-hover','<td class="col-8  text-center">Descricao</td><td class="col-2 text-center">Unidade</td><td class="col-3 text-center">Preço</td>');
+     criaElementoDiv('table','table','tab','table  ','<td class="col-6 text-center">Descricao</td><td class="col-3 text-center">Unidade</td><td class="col-3 text-center">Preço</td>');
         var codigoPhp = JSON.stringify(codigoFim);
-      
+            
             $.ajax({
                 url:"PHP/recebeDados.php",
                type: 'post',
@@ -511,7 +511,7 @@ function listaProd(){
                 $("#resposta").html("Erro ajax");
             }
             });
-           
+           console.log(resposta);
                         
     }
  

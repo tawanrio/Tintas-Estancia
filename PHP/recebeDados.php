@@ -1,36 +1,41 @@
 
 <?php
-$host = 'localhost';
-$user = 'root';
-$pass = '';
+include_once('conexao.php');
 
-try {
-    $pdo = new PDO("mysql:dbname=tintasestancia;host=$host",$user,$pass);
-} catch (PDOException $er) {
-    echo "ERRO COM O BANCO DE DADOS: ". $er->getMessage();
-} catch(Exception $er){
-    echo "ERRO GENERICO: ".$er->getMessage();
-}   
+
+
+
+
 
 $usuario = $_POST['data'];
 
   $dados = json_decode($usuario, true);
- 
-$sql = $pdo->query("SELECT * FROM produtos WHERE grupoProd LIKE '$dados' ");
+ $i = 1;
+$sql = $pdo->query("SELECT * FROM produtos  WHERE grupoProd LIKE '$dados'  ");
+$sqlPg= $pdo->query("SELECT * FROM produtos  WHERE grupoProd LIKE '$dados' liMIT 7  ");
+$count = $sql->rowCount();
+
+$calculate =( $count/100)*7;
+
+
+
 
 if($sql->rowCount() > 0){
-   
     foreach($sql->fetchAll() as $value){
+       
         ?>
-        <div class=" justify-content-md-center m-2">
+        <div class=" ">
         
-    <table class="table table-bordered table-dark table-hover">
-            <tr >      
+    <table class="col-12 resp ">
+            <tr>      
+              
+                <td class="col-6 respd text-left"><?php echo $value['descricao'];?> </td>
+                <td class="col-3 respd text-center"><?php echo $value['unidade'];?>  </td>
+                <td class="col-3 respd text-center"><?php echo "R$ ".$value['preco'];?></td>
+             
                
-                <td class="col text-left"><?php echo $value['descricao'];?> </td>
-                <td class="col text-center"><?php echo $value['unidade'];?>  </td>
-                <td class="col text-center"><?php echo "R$ ".$value['preco'];?></td>
-                
+
+            
             </tr>
         </table>
         </div>
@@ -38,7 +43,7 @@ if($sql->rowCount() > 0){
             
         
     <?php
-        
+    
     }
 }
 /*

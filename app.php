@@ -1,47 +1,38 @@
+<?php
+//include_once('conexao.php');
+$itens_por_pagina=10;
+
+$pagina = intval($_GET['pagina']);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tintas Estância</title>
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 <body>
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-6">   
-            <div id="principal">
-                <div class="row justify-content-md-center">
-                    <div class="col-">  
-                    <div class="txtAutoAten ">
-                        <h1>Auto Atendimento</h1>
-                       <h2> Tintas Estância Das Cores</h2>
-                    </div>
-                    </div>
+<div class="container-fluid col-5 principal ">
+    
+           <div class=" row txtAutoAten  ">
+                <h1> Tintas Estância Das Cores</h1> 
+                <hr>      
+          </div>
+            <div class=" row justify-content-md-center  telaHome "> 
+                <div>
+                    <div class=" linha1  "></div>
                     
-                </div>
-                <div class="row justify-content-md-center">
-                    <div class="col">
-                        
-                        <div class="telaHome">
-                            <div class="row linha1 justify-content-md-center"></div>
-                            
-                            <div class="row justify-content-md-center m-2 nav"> </div>
-
-
-                            <div  id="busca" class="row ini justify-content-md-center">
-                                    <div  id="resposta" ></div>                    
-                             </div>
-                             <div id="voltarIni" class="row justify-content-md-center"></div>
-
-                        </div>
+                    <div class="row justify-content-md-center    nav"> </div>
+                    
+                    <div  id="busca" class="row ini ">
+                        <div class="" id="resposta" ></div>                    
                     </div>
-                </div>
-            </div>
-         
-        </div>
-     </div>
+                    <div id="voltarIni" class="row justify-content-md-center  "></div>
+                </div>         
+                
+            </div> 
+         </div>
 </div>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
