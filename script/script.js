@@ -482,6 +482,8 @@ function telaInternoExterno(){
 
 
 function listaProd(){
+        criaElementoDiv('button','proximo','proximo','botao col-11  rounded-pill','Proximo');   
+
               criaElementoBtnVoltarBusca('voltar');
 
               document.querySelector('#voltar').addEventListener('click', function(){
@@ -494,6 +496,8 @@ function listaProd(){
                 console.log(codigoLocal);
                 
             })
+
+            
     buscaItem();
     navResp.style.display = 'block';
     navBusca.style.display = 'block';
@@ -512,7 +516,7 @@ function listaProd(){
             }
             });
            console.log(resposta);
-                        
+                    
     }
  
    

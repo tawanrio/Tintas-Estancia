@@ -1,8 +1,6 @@
 <?php
 //include_once('conexao.php');
-$itens_por_pagina=10;
 
-$pagina = intval($_GET['pagina']);
 
 ?>
 <!DOCTYPE html>
