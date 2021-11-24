@@ -11,7 +11,7 @@
 include_once('conexao.php');
 
 $numpag = isset($_POST['data']) ? $_POST['data']: 1;
-$proximo = isset($_POST['grast']) ? $_POST['grast']: 'vazio';
+$proximo = isset($_POST['grast']) ? $_POST['grast']: 1;
 
 
 $dados = json_decode($numpag, true);
@@ -70,13 +70,13 @@ while($produtos = $statement->fetch()){
 echo "</table>";
 
 
-//echo (($pagina - 1) > 0) ? "<a href='paginacao.php?pagina=" . ($pagina-1) . "'>Anterior</a>" : "Anterior";
+echo (($pagina - 1) > 0) ? "<a href='paginacao.php?pagina=" . ($pagina-1) . "'>Anterior</a>" : "Anterior";
 /*
 echo (($pagina - 1) > 0) ? "<a href='paginacao.php?pagina=" . ($pagina-1) . "'>Anterior</a>" : "Anterior";
 echo "&nbsp";
 echo (($pagina) * $limit < $total) ? "<a href='paginacao.php?pagina=" . ($pagina+1) . "'>Proximo</a>" : "Proximo";
 */
-//echo (($pagina) * $limit < $total) ? "<a href='paginacao.php?pagina=" . ($pagina+1) . "'>Proximo</a>" : "Proximo";
+echo (($pagina) * $limit < $total) ? "<a href='paginacao.php?pagina=" . ($pagina+1) . "'>Proximo</a>" : "Proximo";
 
 
 

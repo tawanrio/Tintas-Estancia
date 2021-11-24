@@ -1,8 +1,9 @@
 html{ margin-top: 0px;}
 .principal{
-    margin-top: 40px;
+    margin-top: 10px;
     border: solid black 2px;
-    box-shadow: 0px 3px 7px 7px rgba(0, 0, 0, 0.4)
+    box-shadow: 0px 3px 7px 7px rgba(0, 0, 0, 0.4);
+    user-select: none;
   
 }
 .linha1{
@@ -42,7 +43,7 @@ html{ margin-top: 0px;}
 .telaHome{
     
     background-image: linear-gradient(to bottom right, rgba(84, 70, 122, 0.8) 40%, rgba(170, 72, 72, 0.8));
-    min-height:450px;
+    min-height:475px;
 }
 #voltar{
   
@@ -83,6 +84,14 @@ html{ margin-top: 0px;}
     cursor: pointer;
    
     font-size: 13px;
+}
+.next{
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;      
+    
 }
 
 .respd{

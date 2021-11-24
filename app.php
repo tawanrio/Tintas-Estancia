@@ -26,7 +26,7 @@
                     <div  id="busca" class="row ini ">
                         <div class="" id="resposta" ></div>                    
                     </div>
-                    <div id="voltarIni" class="row justify-content-md-center  "></div>
+                    <div id="voltarIni" class="row  justify-content-md-center  "></div>
                 </div>         
                 
             </div> 
@@ -38,7 +38,7 @@
 <script src="script/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-<script src="script/scriptJquery.js"></script>
+
 <script src="script/script.js"></script>
 </body>
 </html> 

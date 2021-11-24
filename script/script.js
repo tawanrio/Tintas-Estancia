@@ -9,11 +9,25 @@ var codigoFim;
 var codigoLocal = [];
 var buscar;
 
+var numPag=0;
+
 telaIni();
  
 
+
 navBusca.style.display = 'none';
 navResp.style.display = 'none';
+
+ function btnVoltar(){
+    document.querySelector('#voltar').addEventListener('click', function(){
+        
+        telaIni();
+        numPag=0;
+        codigoLocal = [];
+        codigoLocal =[''];
+              
+    });
+ }
 
 function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
@@ -48,6 +62,13 @@ function criaElementoDiv(tipo,nomeVar,nomeId,nomeClass,texto){
     nomeVar.innerHTML=texto;
     nav.insertAdjacentElement('beforeend', nomeVar);
 }
+function criaElementoNext(tipo,nomeVar,nomeId,nomeClass,texto){
+    var nomeVar = document.createElement(tipo);
+    nomeVar.id=nomeId;
+    nomeVar.className=nomeClass;
+    nomeVar.innerHTML=texto;
+    document.querySelector('#voltarIni').insertAdjacentElement('beforeend', nomeVar);
+}
 function funCodigoLocal(codigoItem){
     
     codigoLocal.push(codigoItem);
@@ -70,6 +91,8 @@ function telaIni(){
     criaElementoBtn('produtos','prod','botao','Produtos');
     criaElementoBtn('servicos','serv','botao opacity-50 btn btn-secondary disabled','Serviços');
     criaElementoBtn('outrs','outr','botao opacity-50 btn btn-secondary disabled','Outros');
+
+   
   
     navGuia.innerHTML = '';
     document.querySelector('#prod').addEventListener('click', function(){
@@ -77,14 +100,14 @@ function telaIni(){
         navGuia.innerHTML = "Produtos";
         funCodigoLocal('1');
         telaProd();
-        //console.log(typeof(codigoLocal),codigoLocal);
+       
     }); 
 }
 
 function telaProd(){
 
     criaElementoBtn('imobiliario','imobi','botao','Imobiliario');
-    criaElementoBtn('utensilio','utens','botao','Utensílio');
+    criaElementoBtn('utensilio','utens','botao opacity-50 btn btn-secondary disabled','Utensílio');
     criaElementoBtn('automotivo','autom','botao btn btn-secondary opacity-50 btn-lg disabled','Automotivo');
     criaElementoBtnVoltar('voltar');
     
@@ -113,13 +136,7 @@ function telaProd(){
         telaUtens();
         
     })
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        codigoLocal.pop();
-        telaIni();
-        console.log(codigoLocal);
-        
-    })
+    btnVoltar();
 }
 
 function telaImobi(){
@@ -152,9 +169,7 @@ function telaImobi(){
         funCodigoLocal('3');
         codigoLocal = [];
         codigoLocal =['1','1','1']
-        
-        telaProdParede();
-       
+        telaProdParede();       
     })
     document.querySelector('#prodFerro').addEventListener('click', function(){
         nav.innerHTML="";
@@ -170,14 +185,8 @@ function telaImobi(){
         telaProdMadeira();
      
     })
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos';
-        codigoLocal.pop();
-        telaProd();
-        console.log(codigoLocal);
-        
-    })
+
+    btnVoltar()
 }
 
 function telaProdParede(){
@@ -225,14 +234,7 @@ function telaProdParede(){
         
         
     }) 
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos>Imobiliario>';
-        telaImobi();
-        codigoLocal.pop();
-        console.log(codigoLocal);
-        
-    })
+   btnVoltar()
 }
 
 function telaProdPiso(){
@@ -274,14 +276,7 @@ function telaProdPiso(){
         listaProd();
                 
     }) 
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos>Imobiliario';
-        telaImobi();
-        codigoLocal.pop();
-        console.log(codigoLocal);
-        
-    })
+    btnVoltar()
 }
 
 
@@ -322,14 +317,7 @@ function telaProdFerro(){
         
     }) 
     
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos>Imobiliario';
-        codigoLocal.pop();
-        console.log(codigoLocal);
-        telaImobi();
-        
-    })
+    btnVoltar()
 
 }
 function telaProdMadeira(){
@@ -406,14 +394,7 @@ function telaProdMadeira(){
         
     }) 
 
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos>Imobiliario';
-        telaImobi();
-        codigoLocal.pop();
-        console.log(codigoLocal);
-        
-    })
+    btnVoltar()
 
 }
 
@@ -438,15 +419,7 @@ function telaPrimeiraSegundaLinha(){
                 
     })
     
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos';
-        codigoLocal = [];
-        codigoLocal =['1'];
-        telaProd();
-        console.log(codigoLocal);
-        
-    })
+    btnVoltar();
 }
 function telaInternoExterno(){
  
@@ -469,59 +442,96 @@ function telaInternoExterno(){
                 
     })
 
-    document.querySelector('#voltar').addEventListener('click', function(){
-        nav.innerHTML="";
-        navGuia.innerHTML = 'Produtos';
-        telaProd();
-        codigoLocal = [];
-        codigoLocal =['1'];
-        console.log(codigoLocal);
-        
-    })
+    btnVoltar()
 } 
 
-
 function listaProd(){
-        criaElementoDiv('button','proximo','proximo','botao col-11  rounded-pill','Proximo');   
-
-              criaElementoBtnVoltarBusca('voltar');
-
-              document.querySelector('#voltar').addEventListener('click', function(){
-                nav.innerHTML="";
+    buscaItem();
+        
+    criaElementoNext('div','anterior','anterior','next col-6 text-center ','← Anterior'); 
+    
+    criaElementoNext('div','proximo','proximo','next col-6  text-center ','Proximo →'); 
+    
+    criaElementoBtnVoltarBusca('voltar');
+    document.querySelector('#anterior').style.cssText='color:rgb(126, 73, 73);cursor:auto';
+    
+    document.querySelector('#voltar').addEventListener('click', function(){
+        nav.innerHTML="";
                 document.querySelector('#resposta').innerHTML='';
                 document.querySelector('#voltarIni').innerHTML='';
                 navGuia.innerHTML = '';
                 telaIni();
                 codigoLocal = [];
-                console.log(codigoLocal);
                 
             })
 
-            
-    buscaItem();
+            document.querySelector('#anterior').addEventListener('click', function(){
+            if (numPag >0) {
+                numPag--;   
+                if ((numPag-1)<0){
+                    document.querySelector('#anterior').style.cssText='color:rgb(126, 73, 73);cursor:auto';
+                    document.querySelector('#anterior').disabled = true;        
+                }   
+                document.querySelector('#proximo').style.cssText='color:black;cursor:pointer';
+                $.ajax({
+                    url:"PHP/recebeDados.php",
+                    type: 'post',
+                    data:{data: codigoPhp,
+                         numero: numPag},
+                         success: function(resposta){
+                             $("#resposta").html(resposta);
+                            },     
+                error: function(){
+                    $("#resposta").html("Erro ajax");
+                }
+                });
+               
+            }                                  
+        }) 
+        
+        document.querySelector('#proximo').addEventListener('click', function(){
+            if (((numPag+1)*6)<=limitpesq) {
+                numPag++;
+                if(((numPag+1)*6)>=limitpesq){
+                    document.querySelector('#proximo').style.cssText='color:rgb(126, 73, 73);cursor:auto';
+                    document.querySelector('#proximo').disabled = true;
+                }
+                document.querySelector('#anterior').style.cssText='color:black;cursor:pointer';
+                $.ajax({
+                    url:"PHP/recebeDados.php",
+                    type: 'post',
+                    data:{data: codigoPhp,
+                         numero: numPag},
+                   success: function(resposta){
+                    $("#resposta").html(resposta);
+                },     
+                error: function(){
+                    $("#resposta").html("Erro ajax");
+                }
+                });
+            }                       
+        });
+
     navResp.style.display = 'block';
     navBusca.style.display = 'block';
      criaElementoDiv('table','table','tab','table  ','<td class="col-6 text-center">Descricao</td><td class="col-3 text-center">Unidade</td><td class="col-3 text-center">Preço</td>');
         var codigoPhp = JSON.stringify(codigoFim);
-            
-            $.ajax({
-                url:"PHP/recebeDados.php",
-               type: 'post',
-               data:{data: codigoPhp},
-               success: function(resposta){
-                $("#resposta").html(resposta);
-            },     
-            error: function(){
-                $("#resposta").html("Erro ajax");
-            }
-            });
-           console.log(resposta);
+        $.ajax({
+            url:"PHP/recebeDados.php",
+           type: 'post',
+           data:{data: codigoPhp,
+                 numero: numPag},
+           success: function(resposta){
+            $("#resposta").html(resposta);
+        },     
+        error: function(){
+            $("#resposta").html("Erro ajax");
+        }
+        
+        });
+        
+          
                     
     }
  
-   
-function btnVoltar(){
-    buscaItem();
-    console.log(codigoFim);
-}
 
