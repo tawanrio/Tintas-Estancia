@@ -31,6 +31,7 @@ $inicio = $numpag * $limit;
 $offset = $inicio;
 
 
+
 $query = "SELECT * FROM produtos  WHERE grupoProd LIKE '$dados'";
 $query_total = $pdo->query("SELECT COUNT(*) FROM ($query) q");
 $total = $query_total->fetchColumn();
@@ -43,13 +44,18 @@ $produtos = $statement->execute();
     
 </script>
 <?php
-while($produtos = $statement->fetch()){
+
+ while($produtos = $statement->fetch()){
+       
         ?>
         <div class=" ">
         
-    <table class="col-12 resp ">
-            <tr>      
-                <td class="col-6 respd text-left"><?php echo $produtos['descricao'];?> </td>
+    <table class="col-12 resp"  >
+    <script>  </script>
+            <tr onclick="getItemList('<?php echo $produtos['codigoL'] ?>','<?php echo $produtos['descricao'] ?>')">      
+           
+                
+                <td class="col-6 respd text-left"> <?php  echo $produtos['descricao'];  ?> </td>
                 <td class="col-3 respd text-center"><?php echo $produtos['unidade'];?>  </td>
                 <td class="col-3 respd text-center"><?php echo "R$ ".$produtos['preco'];?></td>
                                
@@ -59,8 +65,7 @@ while($produtos = $statement->fetch()){
           
         
     <?php
-    
-    
+        
 }
 
 

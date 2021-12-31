@@ -5,9 +5,15 @@ const nav = document.querySelector('.nav');
 const navBusca = document.querySelector('#busca');
 const navResp = document.querySelector('#resposta');
 const navGuia = document.querySelector('.linha1');
+const carList = document.querySelector('#contFiM');
 var codigoFim;
 var codigoLocal = [];
 var buscar;
+var retConfirm;
+var codgL=[[],[],[]];
+
+var confirm = new novoConfirm(); // cria novo confirm personalizado
+var Alert = new novoAlert(); // Cria novo alert personalizado
 
 var numPag=0;
 
@@ -69,6 +75,13 @@ function criaElementoNext(tipo,nomeVar,nomeId,nomeClass,texto){
     nomeVar.innerHTML=texto;
     document.querySelector('#voltarIni').insertAdjacentElement('beforeend', nomeVar);
 }
+function criaElementoTable(tipo,local,nomeVar,nomeId,nomeClass,texto){
+    var nomeVar = document.createElement(tipo);
+    nomeVar.id=nomeId;
+    nomeVar.className=nomeClass;
+    nomeVar.innerHTML=texto;
+    document.querySelector(local).insertAdjacentElement('afterend', nomeVar);
+}
 function funCodigoLocal(codigoItem){
     
     codigoLocal.push(codigoItem);
@@ -91,6 +104,7 @@ function telaIni(){
     criaElementoBtn('produtos','prod','botao','Produtos');
     criaElementoBtn('servicos','serv','botao opacity-50 btn btn-secondary disabled','Serviços');
     criaElementoBtn('outrs','outr','botao opacity-50 btn btn-secondary disabled','Outros');
+    criaElementoBtn('carrinho','carrinho','botao','Lista de Compras');
 
    
   
@@ -102,6 +116,45 @@ function telaIni(){
         telaProd();
        
     }); 
+    document.querySelector('#carrinho').addEventListener('click', function(){
+        nav.innerHTML="";
+      
+        funCodigoLocal('4');
+        telaCarrinho();
+       
+    }); 
+}
+function teste(){
+    alert('oi');
+} 
+function telaCarrinho(){
+    
+    
+    document.getElementById('descricaoList').innerHTML = 'Descrição';
+    document.getElementById('unidadeList').innerHTML = 'Quantidade';
+    for (let i = 0; i < codgL[0].length; i++) {
+
+        
+     
+      carList.style.display = 'flex';
+   
+      document.getElementById('descricaoList').innerHTML += "<div class='alo' onclick='teste()'>"+codgL[2][i]+'</div>';
+      document.getElementById('unidadeList').innerHTML += '<div>'+codgL[1][i]+'</div>';
+     
+        
+    
+    }
+    
+    criaElementoBtnVoltar('voltar');
+    document.querySelector('#voltar').addEventListener('click', function(){
+        
+        telaIni();
+        numPag=0;
+        codigoLocal = [];
+        codigoLocal =[''];
+        carList.style.display = 'none';
+              
+    });
 }
 
 function telaProd(){
@@ -529,9 +582,86 @@ function listaProd(){
         }
         
         });
-        
-          
+                 
                     
     }
- 
+    function novoConfirm(){
+            this.cod = function(texto, callback){
 
+
+            const btnConfirmar = document.createElement("button");
+            btnConfirmar.textContent = 'Confirmar';
+            btnConfirmar.addEventListener('click',	function(){confirm.confirmar(callback)})
+            btnConfirmar.className = 'botaoBox';
+                    
+            const btnCancelar = document.createElement("button");
+            btnCancelar.textContent = 'Cancelar';
+            btnCancelar.addEventListener('click', () => {confirm.cancelar(callback)})
+            btnCancelar.className = 'botaoBox';
+    
+            novoConfirm = document.querySelector('#box');
+            novoConfirm.style.left =  (window.innerWidth/2) - (500 * .5)+"px";
+            novoConfirm.style.top = '250px';
+            novoConfirm.style.display = 'block';
+            document.querySelector('#box').style.display = 'block';
+            document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
+            document.querySelector('#boxBody').innerHTML = texto;
+            document.querySelector('#boxFoot').innerHTML = '';
+            document.querySelector('#boxFoot').insertAdjacentElement("beforeend",btnConfirmar);
+            document.querySelector('#boxFoot').insertAdjacentElement("beforeend",btnCancelar);
+        }
+        this.confirmar = function(callback){
+            document.querySelector('#box').style.display = 'none';
+            callback(retConfirm = true);
+        }
+        this.cancelar = function(callback){
+            document.querySelector('#box').style.display = 'none';
+            callback(retConfirm = false);
+        }
+    }
+
+    function novoAlert(){
+        this.cod = function(texto){
+            novoAlert = document.querySelector('#box');
+            novoAlert.style.left = (window.innerWidth/2) - (500 * .5)+"px";
+            novoAlert.style.top = '250px';
+            novoAlert.style.display = 'block';
+            document.querySelector('#boxHead').innerHTML = "Atenção";
+            document.querySelector('#boxBody').innerHTML = texto;
+            document.querySelector('#boxFoot').innerHTML = '<div class="botaoBox" onclick="Alert.ok()">OK</div>'	
+        }
+        this.ok = function(){
+            document.querySelector('#box').style.display = 'none';
+        }
+    }
+    console.log(codgL[0]);
+
+
+   function getItemList(codigo,descricao){
+    
+     if(codgL[0].includes(codigo)){
+        confirm.cod('Este item já esta na sua lista, deseja acrescentar<br> 1 unidade?', function(){
+
+            if(retConfirm == true){
+                codgL[1][codgL[0].indexOf(codigo)] += 1 ;
+
+                Alert.cod('Item inserido com sucesso!');
+            }});
+                 
+         } else {
+            confirm.cod('Deseja inserir este item à sua lista?', function(){
+
+                if(retConfirm == true){
+                    console.log(codgL,codgL[0].includes(codigo));
+                    codgL[0].push(codigo);                            
+                    codgL[1].push(1); 
+                    codgL[2].push(descricao); 
+
+                    console.log(codgL);
+                }
+                Alert.cod('Item inserido com sucesso!');
+            });
+          
+                }  
+
+   }  

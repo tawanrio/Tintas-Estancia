@@ -54,7 +54,7 @@ html{ margin-top: 0px;}
     font-size: 35px;
     font-weight: bold;
 }
-#tab{
+#tab,.tab{
     background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
     color: white;
     border: solid black 2px;
@@ -93,9 +93,61 @@ html{ margin-top: 0px;}
     user-select: none;      
     
 }
-
 .respd{
     padding: 8px;
-  
-    
+}
+#contFiM{
+
+    display:none ;
+       
+}
+.alo:hover{
+    color: rgb(125, 127, 243);
+    cursor: pointer;
+}
+
+#box{
+    display: none;
+    border: solid black 7px;
+    position:absolute;
+    cursor: pointer;
+    border-radius:2px; 
+    text-align: center;
+    width:500px;
+    z-index: 10;
+    margin:auto;
+}
+#boxHead{
+    background-image: linear-gradient(to bottom right, rgb(84, 70, 122) 40%, rgb(170, 72, 72));
+    font-size:19px;
+    padding:10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+   
+}
+#boxBody{ 
+    background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
+    padding:12px; 
+    font-size: 20px;
+    color: white;
+}
+#boxFoot{
+    background-image: linear-gradient(to bottom right, rgb(84, 70, 122) 40%, rgb(170, 72, 72));
+    padding: 5px; 
+    display: flex;
+    margin: auto;
+    justify-content: space-evenly;
+    cursor: pointer;        
+}
+.botaoBox{
+    width: 125px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 2px;
+    text-align: center;
+    margin: 10px 4px;
+    color:black;
+    background-color: white;
 }
