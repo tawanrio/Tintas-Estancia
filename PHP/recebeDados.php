@@ -52,7 +52,7 @@ $produtos = $statement->execute();
         
     <table class="col-12 resp"  >
     <script>  </script>
-            <tr onclick="getItemList('<?php echo $produtos['codigoL'] ?>','<?php echo $produtos['descricao'] ?>')">      
+            <tr onclick="getItemList('<?php echo $produtos['codigoL'] ?>','<?php echo $produtos['descricao'] ?>','<?php echo $produtos['unidade'] ?>','<?php echo $produtos['preco'] ?>')">      
            
                 
                 <td class="col-6 respd text-left"> <?php  echo $produtos['descricao'];  ?> </td>

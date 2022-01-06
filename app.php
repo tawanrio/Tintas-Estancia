@@ -19,10 +19,9 @@
                     <div class="linha1  "></div>
                                    
                
-                    <div id="contFiM" class="row tab">
-                        <div class="col-9 text-center" id="descricaoList">Descrição</div>
-                        <div class="col-2 text-center" id="unidadeList">Unidade</div>
-                        
+                    <div id="contFiM" class="row tab ">
+                   
+                                          
                      </div>
                                       
             
@@ -40,7 +39,7 @@
 
          </div>
          
-</div>
+
 
 
 <div id='box' class=" justify-content-md-center">

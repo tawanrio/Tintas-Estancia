@@ -6,11 +6,14 @@ const navBusca = document.querySelector('#busca');
 const navResp = document.querySelector('#resposta');
 const navGuia = document.querySelector('.linha1');
 const carList = document.querySelector('#contFiM');
+//var guardaValor;
 var codigoFim;
 var codigoLocal = [];
+
 var buscar;
 var retConfirm;
-var codgL=[[],[],[]];
+var codgL=[[],[],[],[],[]];
+
 
 var confirm = new novoConfirm(); // cria novo confirm personalizado
 var Alert = new novoAlert(); // Cria novo alert personalizado
@@ -75,17 +78,17 @@ function criaElementoNext(tipo,nomeVar,nomeId,nomeClass,texto){
     nomeVar.innerHTML=texto;
     document.querySelector('#voltarIni').insertAdjacentElement('beforeend', nomeVar);
 }
-function criaElementoTable(tipo,local,nomeVar,nomeId,nomeClass,texto){
+function criaElemento(tipo,local,nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement(tipo);
     nomeVar.id=nomeId;
     nomeVar.className=nomeClass;
     nomeVar.innerHTML=texto;
-    document.querySelector(local).insertAdjacentElement('afterend', nomeVar);
+    document.querySelector(local).insertAdjacentElement('beforeend', nomeVar);
 }
 function funCodigoLocal(codigoItem){
     
     codigoLocal.push(codigoItem);
-    console.log(codigoLocal);
+    //console.log(codigoLocal);
     
 }
 function buscaItem(){
@@ -124,28 +127,136 @@ function telaIni(){
        
     }); 
 }
-function teste(){
-    alert('oi');
-} 
-function telaCarrinho(){
-    
-    
-    document.getElementById('descricaoList').innerHTML = 'Descrição';
-    document.getElementById('unidadeList').innerHTML = 'Quantidade';
-    for (let i = 0; i < codgL[0].length; i++) {
+function remove(param){
+    confirm.cod(`Deseja remover: ${codgL[2][codgL[0].indexOf(param)]} <br>da sua lista de compra?`, function(){
+        if(retConfirm == true){
+            
+            let index = codgL[0].indexOf(param)
+            if(index > -1){
+                Alert.cod(`Item removido com sucesso!`);
+            codgL[0].splice(index, 1);
+            codgL[1].splice(index , 1);
+            codgL[2].splice(index , 1);
+            codgL[3].splice(index , 1);
 
-        
-     
-      carList.style.display = 'flex';
-   
-      document.getElementById('descricaoList').innerHTML += "<div class='alo' onclick='teste()'>"+codgL[2][i]+'</div>';
-      document.getElementById('unidadeList').innerHTML += '<div>'+codgL[1][i]+'</div>';
-     
-        
+            
+            criaLista();
+
+
+           // console.log(codgL[2]);
+            }
+        }});
+  
+} 
+function chamaAltera(indice){
+    let valor = codgL[1][indice];
     
+    confirm.cod(`Alterar Quantidade?<br><button class="alter" onclick="altera(false,${indice})"><</button>  ${codgL[1][indice]}  
+    <button class="alter" onclick="altera(true,${indice})">></button>`, function(){
+        
+        if(retConfirm == true){
+            criaLista();
+        }else{
+            codgL[1][indice] = valor;
+           
+        }
+    });
+        
+}
+function altera(param,indice){
+    if(param == true){
+        codgL[1][indice] += 1;
+        document.querySelector('#boxBody').innerHTML = `Alterar Quantidade?<br> <button class="alter" onclick="altera(false,${indice})">
+        <</button>  ${codgL[1][indice]}  <button class="alter" onclick="altera(true,${indice})">></button> `;
+    }else{
+        if(codgL[1][indice] > 1){
+        codgL[1][indice] -= 1;
+        document.querySelector('#boxBody').innerHTML = `Alterar Quantidade?<br> <button class="alter" onclick="altera(false,${indice})">
+        <</button>  ${codgL[1][indice]}  <button class="alter" onclick="altera(true,${indice})">></button>`;
+        }
     }
+}
+function criaLista(){
+    if(codgL[0] == ''){
+        carList.style.display = 'flex';
+        document.querySelector('#contFiM').innerHTML = "<div class='text-center h3'  >Não há produtos em sua lista </div>";
+
+       
+    }else{
+        
+        
+        document.querySelector('#contFiM').innerHTML = '';
+    
+        criaElemento('div','#contFiM','descricaoList','descricaoList',' text-center  descricaoList col-6','<b>Descrição');
+        criaElemento('div','#contFiM','unidadeList','unidadeList','unidadeList col-1','<b>Un');
+        criaElemento('div','#contFiM','quantidadeList','quantidadeList','quantidadeList col-1','<b>Qnt');
+        criaElemento('div','#contFiM','precoUnList','precoUnList','precoUnList col-2','<b>V.Unitario');
+        criaElemento('div','#contFiM','precoTotList','precoTotList','precoTotList col-2','<b>V.Total');
+        var precoFinal = 0;
+        for (let i = 0; i < codgL[0].length; i++) {
+            
+            let totalUn =  codgL[4][i] * codgL[1][i];
+            
+            carList.style.display = 'flex';
+            
+            document.getElementById('descricaoList').innerHTML += `<div class='descList ' onclick='remove("${codgL[0][i]}")'>${codgL[2][i]}</div>`;
+            document.getElementById('quantidadeList').innerHTML += `<div class='quantList text-center ' onclick='chamaAltera("${i}")'>${codgL[1][i]}</div>`;
+            document.getElementById('unidadeList').innerHTML += `<div class="text-center ">${codgL[3][i]}</div>`;
+            document.getElementById('precoUnList').innerHTML += `<div class="text-center ">${codgL[4][i]}</div>`;
+            document.getElementById('precoTotList').innerHTML += `<div class="text-center ">${totalUn.toFixed(2)}</div>`;
+            
+            precoFinal +=  totalUn;
+            precoFinal.toFixed(2);
+                
+           // console.log(precoFinal,typeof(precoFinal),totalUn);
+        }
+      
+       
+        criaElemento('div','#contFiM','totalList','totalList','totalList text-end fs-5 fst-italic fw-bolder"> col-4 offset-8 ',`Total: R$ ${precoFinal.toFixed(2)}`);
+    
+    
+    let conteudoEnviar ='';
+    for(let i =0; i < codgL[0].length ; i++){
+        conteudoEnviar += '* '+codgL[0][i]+'-';
+        conteudoEnviar += codgL[1][i]+' *,';
+        
+    }
+    criaElemento('div','.nav','div1','div1','div1 row ','');
+    var enviarCont = document.createElement('a');
+    enviarCont.href =`https://api.whatsapp.com/send?phone=5511985373835&text=${'Lista de compra: '+conteudoEnviar}`;
+    enviarCont.id='enviarCont';
+    enviarCont.target='_blank';
+    enviarCont.className='enviarCont row mt-4 text-center';
+    enviarCont.innerHTML='<button class="botao enviarContBtn">Enviar</button>';
+    document.querySelector('.div1').insertAdjacentElement('beforeend', enviarCont);
+
+    criaElementoBtn('limpaLista','limpaLista','limpaLista','Limpar Lista?');
+    document.querySelector('#limpaLista').addEventListener('click', function(){
+       
+        confirm.cod(`Tem certeza que deseja limpar sua lista de compras?`, function(){
+            
+            if(retConfirm == true){
+                codgL=[[],[],[],[],[]];
+                numPag=0;
+                codigoLocal = [];
+                codigoLocal =[''];
+                carList.style.display = 'none';
+                telaIni();
+                Alert.cod('Lista limpa com sucesso!');
+          
+            }});
+    })
+}
+}
+function telaCarrinho(){
+    navGuia.innerHTML = 'Lista de Compra';
+  //  console.log(codgL[2]);
+   criaLista();
     
     criaElementoBtnVoltar('voltar');
+
+    
+   
     document.querySelector('#voltar').addEventListener('click', function(){
         
         telaIni();
@@ -513,6 +624,7 @@ function listaProd(){
                 document.querySelector('#resposta').innerHTML='';
                 document.querySelector('#voltarIni').innerHTML='';
                 navGuia.innerHTML = '';
+                
                 telaIni();
                 codigoLocal = [];
                 
@@ -567,7 +679,7 @@ function listaProd(){
 
     navResp.style.display = 'block';
     navBusca.style.display = 'block';
-     criaElementoDiv('table','table','tab','table  ','<td class="col-6 text-center">Descricao</td><td class="col-3 text-center">Unidade</td><td class="col-3 text-center">Preço</td>');
+     criaElementoDiv('table','table','tab','table  ','<td class="col-6 text-center"><b>Descricao</td><td class="col-3 text-center"><b>Unidade</td><td class="col-3 text-center"><b>Preço</td>');
         var codigoPhp = JSON.stringify(codigoFim);
         $.ajax({
             url:"PHP/recebeDados.php",
@@ -626,42 +738,57 @@ function listaProd(){
             novoAlert.style.left = (window.innerWidth/2) - (500 * .5)+"px";
             novoAlert.style.top = '250px';
             novoAlert.style.display = 'block';
-            document.querySelector('#boxHead').innerHTML = "Atenção";
+            document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
             document.querySelector('#boxBody').innerHTML = texto;
-            document.querySelector('#boxFoot').innerHTML = '<div class="botaoBox" onclick="Alert.ok()">OK</div>'	
+            document.querySelector('#boxFoot').innerHTML = '<button class="botaoBox" onclick="Alert.ok()">OK</button>'	
         }
         this.ok = function(){
             document.querySelector('#box').style.display = 'none';
         }
     }
-    console.log(codgL[0]);
+   
 
 
-   function getItemList(codigo,descricao){
+   function getItemList(codigo,descricao,unidade,preco){
     
      if(codgL[0].includes(codigo)){
-        confirm.cod('Este item já esta na sua lista, deseja acrescentar<br> 1 unidade?', function(){
-
-            if(retConfirm == true){
-                codgL[1][codgL[0].indexOf(codigo)] += 1 ;
-
-                Alert.cod('Item inserido com sucesso!');
-            }});
+             
+        
+        let valor = codgL[1][codgL[0].indexOf(codigo)];
+    confirm.cod(`Alterar Quantidade?<br><button class="alter" onclick="altera(false,${codgL[0].indexOf(codigo)})"><</button>  ${codgL[1][codgL[0].indexOf(codigo)]}  
+    <button class="alter" onclick="altera(true,${codgL[0].indexOf(codigo)})">></button>`, function(){
+        
+        if(retConfirm == true){
+           
+        }else{
+            codgL[1][codgL[0].indexOf(codigo)] = valor;
+           
+        }
+    });
                  
          } else {
-            confirm.cod('Deseja inserir este item à sua lista?', function(){
-
+            confirm.cod(`Deseja inserir o item: ${descricao}<br> à sua lista?`, function(){
+               
+                                
                 if(retConfirm == true){
-                    console.log(codgL,codgL[0].includes(codigo));
+                   
                     codgL[0].push(codigo);                            
                     codgL[1].push(1); 
                     codgL[2].push(descricao); 
+                    codgL[3].push(unidade); 
+                    codgL[4].push(preco.replace(",",".")); 
 
-                    console.log(codgL);
+                    confirm.cod(`Alterar Quantidade?<br><button class="alter" onclick="altera(false,${codgL[0].indexOf(codigo)})"><</button>  ${codgL[1][codgL[0].indexOf(codigo)]}  
+                    <button class="alter" onclick="altera(true,${codgL[0].indexOf(codigo)})">></button>`, function(){
+                        
+                        if(retConfirm == true){ }});
+                
+                }else{
+                    Alert.cod('Falha ao inserir o item à lista!');
                 }
-                Alert.cod('Item inserido com sucesso!');
             });
-          
-                }  
+            
+        }  
+        //console.log(codgL);   
 
    }  

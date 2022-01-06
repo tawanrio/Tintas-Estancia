@@ -97,15 +97,32 @@ html{ margin-top: 0px;}
     padding: 8px;
 }
 #contFiM{
-
     display:none ;
-       
 }
-.alo:hover{
+.alter{
+    background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
+    border:solid white 2px;
+    color: white;
+    font-size: 20px;
+    border-radius:25%;
+    
+}
+.alter:hover{
+    background-image: linear-gradient(to bottom right,  rgba(180, 4, 4),rgba(21, 1, 78 ));
+ }
+
+.descList:hover,.quantList:hover{
     color: rgb(125, 127, 243);
     cursor: pointer;
 }
-
+.enviarCont{
+    text-decoration: none;
+}
+.enviarContBtn{
+    border-radius: 30px;
+  
+   
+}
 #box{
     display: none;
     border: solid black 7px;
@@ -125,7 +142,7 @@ html{ margin-top: 0px;}
     font-size: 20px;
     font-weight: 700;
     color: white;
-   
+       
 }
 #boxBody{ 
     background-image: linear-gradient(to bottom right, rgb(35, 30, 49) 25%, rgb(75, 3, 3));
