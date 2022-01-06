@@ -55,6 +55,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 
+<script src="script/telas.js"></script>
 <script src="script/script.js"></script>
 </body>
 </html> 
