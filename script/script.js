@@ -18,7 +18,7 @@ var codgL=[[],[],[],[],[]];
 var confirm = new novoConfirm(); // cria novo confirm personalizado
 var Alert = new novoAlert(); // Cria novo alert personalizado
 
-var numPag=0;
+
 
 telaIni();
  
@@ -610,7 +610,7 @@ function telaInternoExterno(){
 } 
 
 function listaProd(){
-    numPag = 0;
+    var numPag = 0;
     buscaItem();
         
     criaElementoNext('div','anterior','anterior','next col-6 text-center ','← Anterior'); 
