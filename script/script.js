@@ -610,6 +610,7 @@ function telaInternoExterno(){
 } 
 
 function listaProd(){
+    numPag = 0;
     buscaItem();
         
     criaElementoNext('div','anterior','anterior','next col-6 text-center ','← Anterior'); 
