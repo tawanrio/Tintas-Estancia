@@ -121,7 +121,7 @@ html{ margin-top: 0px;}
 .enviarContBtn{
     border-radius: 30px;
   
-   
+   max-width: 50px;
 }
 #box{
     display: none;

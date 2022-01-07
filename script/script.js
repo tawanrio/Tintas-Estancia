@@ -9,8 +9,11 @@ var retConfirm;
 var codgL=[[],[],[],[],[]];
 var confirm = new novoConfirm(); // cria novo confirm personalizado
 var Alert = new novoAlert(); // Cria novo alert personalizado
+var numeroTelefone = '5511958775934';
+var mensagemWhats = 'Olá fiz a cotação atravez do sistema de auto atedimento, e gostaria de comprar os item a seguir!'
 
 var codigoPhp ;
+
 
 telaIni();
 
@@ -21,7 +24,6 @@ navResp.style.display = 'none';
     criaElementoBtnVoltar('voltar','.nav');
     document.querySelector('#voltar').addEventListener('click', function(){
         telaIni();
-            
     });
  }
 
@@ -53,13 +55,13 @@ function criaElementoAll(tipo,local,nomeVar,nomeId,nomeClass,texto){
 function criaElementoEnviarWhats(){
     let conteudoEnviar ='';
     for(let i =0; i < codgL[0].length ; i++){
-        conteudoEnviar += '* '+codgL[0][i]+'-';
-        conteudoEnviar += codgL[1][i]+' *,';
+        conteudoEnviar += ' *'+codgL[0][i]+'-';
+        conteudoEnviar += codgL[1][i]+'* , ';
         
     }
     criaElementoAll('div','.nav','div1','div1','div1 row ','');
-    const enviarCont = document.createElement('a');
-    enviarCont.href =`https://api.whatsapp.com/send?phone=5511985373835&text=${'Lista de compra: '+conteudoEnviar}`;
+    const enviarCont = document.createElemen't('a');
+    enviarCont.href =`'https://api.whatsapp.com/send?phone=${numeroTelefone}&text=${mensagemWhats+' Lista de Compra: '+conteudoEnviar}`;
     enviarCont.id='enviarCont';
     enviarCont.target='_blank';
     if(codgL[0] == ''){

@@ -4,7 +4,7 @@ $user = 'root';
 $pass = '';
 
 try {
-    $pdo = new PDO("mysql:dbname=tintasestancia;host=$host",$user,$pass);
+    $pdo = new PDO("mysql:dbname=test;host=$host",$user,$pass);
 } catch (PDOException $er) {
     echo "ERRO COM O BANCO DE DADOS: ". $er->getMessage();
 } catch(Exception $er){
