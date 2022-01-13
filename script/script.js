@@ -1,4 +1,5 @@
 const nav = document.querySelector('.nav');
+const nav2 = document.querySelector('.nav2');
 const navBusca = document.querySelector('#busca');
 const navResp = document.querySelector('#resposta');
 const navGuia = document.querySelector('.linha1');
@@ -9,28 +10,28 @@ var retConfirm;
 var codgL=[[],[],[],[],[]];
 var confirm = new novoConfirm(); // cria novo confirm personalizado
 var Alert = new novoAlert(); // Cria novo alert personalizado
-var numeroTelefone = '5511958775934';
-var mensagemWhats = 'Olá fiz a cotação atravez do sistema de auto atedimento, e gostaria de comprar os item a seguir!'
 
 var codigoPhp ;
 
 
-telaIni();
 
+telaIni();
+telaNavBar();
 navBusca.style.display = 'none';
 navResp.style.display = 'none';
 
  function btnVoltar(){
-    criaElementoBtnVoltar('voltar','.nav');
+    criaElementoBtnVoltar('voltar','.nav2');
     document.querySelector('#voltar').addEventListener('click', function(){
         telaIni();
+            
     });
  }
 
 function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
     nomeVar.id=nomeId;
-    nomeVar.className=nomeClass +' col-11 botao rounded-pill';
+    nomeVar.className=nomeClass +'  botao col-md-10 col-sm-10 rounded-pill';
     nomeVar.innerHTML=texto;
     nav.insertAdjacentElement('beforeend', nomeVar);
     
@@ -38,7 +39,8 @@ function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
 function criaElementoBtnVoltar(nome,local){
     var nome = document.createElement("BUTTON");
     nome.id='voltar';
-    nome.className='botao col-11  rounded-pill';
+    nome.className='botao col-7 text-center  rounded-pill';
+    nome.style.display = 'block';
     nome.type="button";
     nome.innerHTML='Voltar';
     document.querySelector(local).insertAdjacentElement('beforeend', nome);
@@ -55,23 +57,45 @@ function criaElementoAll(tipo,local,nomeVar,nomeId,nomeClass,texto){
 function criaElementoEnviarWhats(){
     let conteudoEnviar ='';
     for(let i =0; i < codgL[0].length ; i++){
-        conteudoEnviar += ' *'+codgL[0][i]+'-';
-        conteudoEnviar += codgL[1][i]+'* , ';
+        conteudoEnviar += codgL[0][i]+'%0A';
+        conteudoEnviar += codgL[3][i]+'- ';
+        conteudoEnviar += codgL[2][i]+'%0A';
+        conteudoEnviar += codgL[1][i]+' Unidade,%0A%0A';
+      
         
     }
-    criaElementoAll('div','.nav','div1','div1','div1 row ','');
-    const enviarCont = document.createElemen't('a');
-    enviarCont.href =`'https://api.whatsapp.com/send?phone=${numeroTelefone}&text=${mensagemWhats+' Lista de Compra: '+conteudoEnviar}`;
+  
+    //criaElementoAll('div','.nav','div1','div1','div1 row ','');
+    const enviarCont = document.createElement('a');
+    enviarCont.href =`https://api.whatsapp.com/send?phone=5511985373835&text=${'Lista de compra:%0A'+conteudoEnviar}`;
     enviarCont.id='enviarCont';
     enviarCont.target='_blank';
-    if(codgL[0] == ''){
-        enviarCont.className='enviarCont opacity-50 btn btn-secondary disabled row mt-4 text-center';
-    }else{   
-        enviarCont.className='enviarCont row mt-4 text-center';
-    }
-    enviarCont.innerHTML='<button class="botao enviarContBtn">Enviar</button>';
-    document.querySelector('.div1').insertAdjacentElement('beforeend', enviarCont);
+    enviarCont.className='enviarCont row col-md-5 col-sm-10 mt-md-4 mt-sm-3';
+    
+    enviarCont.innerHTML='<button class="botao  enviarContBtn">Enviar</button>';
+    document.querySelector('.nav').insertAdjacentElement('beforeend', enviarCont);
 }
+function sendRemove(){
+  
+    criaElementoEnviarWhats();
+   //a gambiarra abaixo serve somente pra deixa o botão igual ao elemento de cima 
+    criaElementoAll('a','.nav','limpaLista','limpaLista','enviarCont row col-md-5 col-sm-10 mt-md-4 ','<button class="botao  enviarContBtn">Limpar Lista?</button>');
+    btnVoltar();
+    
+    document.querySelector('#limpaLista').addEventListener('click', function(){
+       
+        confirm.cod(`Tem certeza que deseja limpar sua lista de compras?`, function(){
+            
+            if(retConfirm == true){
+                codgL=[[],[],[],[],[]];
+               
+                telaIni();
+                Alert.cod('Lista limpa com sucesso!');
+          
+            }});
+    })
+}
+
  function novoConfirm(){
             this.cod = function(texto, callback){
 
@@ -87,9 +111,11 @@ function criaElementoEnviarWhats(){
             btnCancelar.className = 'botaoBox';
     
             novoConfirm = document.querySelector('#box');
-            novoConfirm.style.left =  (window.innerWidth/2) - (500 * .5)+"px";
+            novoConfirm.style.left =  (window.innerWidth/2) - (350 * .5)+"px";
             novoConfirm.style.top = '250px';
             novoConfirm.style.display = 'block';
+           // document.querySelector('.principal').style.filter = 'blur(2px)';
+          //  document.querySelector('.vidro').style.display = 'block';
             document.querySelector('#box').style.display = 'block';
             document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
             document.querySelector('#boxBody').innerHTML = texto;
@@ -99,10 +125,14 @@ function criaElementoEnviarWhats(){
         }
         this.confirmar = function(callback){
             document.querySelector('#box').style.display = 'none';
+            document.querySelector('.principal').style.filter = 'none';
+          //  document.querySelector('.vidro').style.display = 'none';
             callback(retConfirm = true);
         }
         this.cancelar = function(callback){
+            document.querySelector('.principal').style.filter = 'none';
             document.querySelector('#box').style.display = 'none';
+         //   document.querySelector('.vidro').style.display = 'none';
             callback(retConfirm = false);
         }
     }
@@ -110,15 +140,19 @@ function criaElementoEnviarWhats(){
     function novoAlert(){
         this.cod = function(texto){
             novoAlert = document.querySelector('#box');
-            novoAlert.style.left = (window.innerWidth/2) - (500 * .5)+"px";
+            novoAlert.style.left = (window.innerWidth/2) - (350 * .5)+"px";
             novoAlert.style.top = '250px';
             novoAlert.style.display = 'block';
+         //   document.querySelector('.principal').style.filter = 'blur(2px)';
+          //  document.querySelector('.vidro').style.display = 'block';
             document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
             document.querySelector('#boxBody').innerHTML = texto;
             document.querySelector('#boxFoot').innerHTML = '<button class="botaoBox" onclick="Alert.ok()">OK</button>'	
         }
         this.ok = function(){
+            document.querySelector('.principal').style.filter = 'none';
             document.querySelector('#box').style.display = 'none';
+         //   document.querySelector('.vidro').style.display = 'none';
         }
     }
    
@@ -126,7 +160,7 @@ function criaElementoEnviarWhats(){
 function funCodigoLocal(codigoItem){
     
     codigoLocal.push(codigoItem);
-    //console.log(codigoLocal);
+    console.log(codigoLocal);
     
 }
 function buscaItem(){
@@ -187,11 +221,11 @@ function altera(param,indice){
 function criaLista(){
             
         document.querySelector('#contFiM').innerHTML = '';
-        criaElementoAll('div','#contFiM','descricaoList','descricaoList',' text-center  descricaoList col-6','<b>Descrição');
-        criaElementoAll('div','#contFiM','unidadeList','unidadeList','unidadeList col-1','<b>Un');
-        criaElementoAll('div','#contFiM','quantidadeList','quantidadeList','quantidadeList col-1','<b>Qnt');
-        criaElementoAll('div','#contFiM','precoUnList','precoUnList','precoUnList col-2','<b>V.Unitario');
-        criaElementoAll('div','#contFiM','precoTotList','precoTotList','precoTotList col-2','<b>V.Total');
+        criaElementoAll('div','#contFiM','descricaoList','descricaoList',' text-center  col-6','<b>Descrição');
+        criaElementoAll('div','#contFiM','unidadeList','unidadeList',' text-center col-1','<b>Un');
+        criaElementoAll('div','#contFiM','quantidadeList','quantidadeList',' text-center col-1','<b>Qnt');
+        criaElementoAll('div','#contFiM','precoUnList','precoUnList',' text-center col-2','<b>V.Unitario');
+        criaElementoAll('div','#contFiM','precoTotList','precoTotList',' text-center    col-2','<b>V.Total');
         var precoFinal = 0;
         for (let i = 0; i < codgL[0].length; i++) {
             
@@ -199,11 +233,11 @@ function criaLista(){
             
             carList.style.display = 'flex';
             
-            document.getElementById('descricaoList').innerHTML += `<div class='descList ' onclick='remove("${codgL[0][i]}")'>${codgL[2][i]}</div>`;
-            document.getElementById('quantidadeList').innerHTML += `<div class='quantList text-center ' onclick='chamaAltera("${i}")'>${codgL[1][i]}</div>`;
-            document.getElementById('unidadeList').innerHTML += `<div class="text-center ">${codgL[3][i]}</div>`;
-            document.getElementById('precoUnList').innerHTML += `<div class="text-center ">${codgL[4][i]}</div>`;
-            document.getElementById('precoTotList').innerHTML += `<div class="text-center ">${totalUn.toFixed(2)}</div>`;
+            document.getElementById('descricaoList').innerHTML += `<div class='descList  ' onclick='remove("${codgL[0][i]}")'>${codgL[2][i]}</div>`;
+            document.getElementById('quantidadeList').innerHTML += `<div class='quantList   text-center ' onclick='chamaAltera("${i}")'>${codgL[1][i]}</div>`;
+            document.getElementById('unidadeList').innerHTML += `<div class="text-center  ">${codgL[3][i]}</div>`;
+            document.getElementById('precoUnList').innerHTML += `<div class="text-center   ">${codgL[4][i]}</div>`;
+            document.getElementById('precoTotList').innerHTML += `<div class="text-center  ">${totalUn.toFixed(2)}</div>`;
             
             precoFinal +=  totalUn;
             precoFinal.toFixed(2);
@@ -211,37 +245,19 @@ function criaLista(){
            // console.log(precoFinal,typeof(precoFinal),totalUn);
         }
        
-        criaElementoAll('div','#contFiM','totalList','totalList','totalList text-end fs-5 fst-italic fw-bolder"> col-4 offset-8 ',`Total: R$ ${precoFinal.toFixed(2)}`);
+        criaElementoAll('div','#contFiM','totalList','totalList','totalList text-end  fst-italic fw-bolder"> col-12  ',`Total: R$ ${precoFinal.toFixed(2)}`);
     
 }
 
-function sendRemove(){
-  
-    criaElementoEnviarWhats();
-    criaElementoAll('button','.nav','limpaLista','limpaLista','limpaLista col-11 botao rounded-pill','Limpar Lista?');
-    
-    document.querySelector('#limpaLista').addEventListener('click', function(){
-       
-        confirm.cod(`Tem certeza que deseja limpar sua lista de compras?`, function(){
-            
-            if(retConfirm == true){
-                codgL=[[],[],[],[],[]];
-               
-                telaIni();
-                Alert.cod('Lista limpa com sucesso!');
-          
-            }});
-    })
-    btnVoltar();
-}
 
 
 function reset(){
     numPag=0;
     codigoLocal = [];
-    codigoLocal =[''];
+    codigoLocal =[];
     carList.style.display = 'none';
     nav.innerHTML="";
+    nav2.innerHTML= "";
     document.querySelector('#resposta').innerHTML='';
     document.querySelector('#voltarIni').innerHTML='';
     navGuia.innerHTML = '';
@@ -252,11 +268,11 @@ function reset(){
 function telaCarrinho(){
     if(codgL[0] == ''){
         Alert.cod('Não há produtos em sua lista');
-          telaIni();
+      telaIni();
          
       }else{
     navGuia.innerHTML = 'Lista de Compra';
-  //  console.log(codgL[2]);
+    console.log(codgL[2]);
    criaLista();
    sendRemove();
 
@@ -326,7 +342,7 @@ function listaProd(){
     
     navResp.style.display = 'block';
     navBusca.style.display = 'block';
-     criaElementoAll('table','.nav','table','tab','table  ','<td class="col-6 text-center"><b>Descricao</td><td class="col-3 text-center"><b>Unidade</td><td class="col-3 text-center"><b>Preço</td>');
+     criaElementoAll('table','.nav','table','tab','table  ','<td class="col-6 fs-6 text-center"><b>Descricao</td><td class="col-3 fs-6  text-center"><b>Unidade</td><td class="col-3 fs-6  text-center"><b>Preço</td>');
          codigoPhp = JSON.stringify(codigoFim);
         $.ajax({
             url:"PHP/recebeDados.php",
