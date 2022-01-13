@@ -60,7 +60,7 @@ function criaElementoEnviarWhats(){
         
     }
     criaElementoAll('div','.nav','div1','div1','div1 row ','');
-    const enviarCont = document.createElemen't('a');
+    const enviarCont = document.createElement('a');
     enviarCont.href =`'https://api.whatsapp.com/send?phone=${numeroTelefone}&text=${mensagemWhats+' Lista de Compra: '+conteudoEnviar}`;
     enviarCont.id='enviarCont';
     enviarCont.target='_blank';
@@ -87,7 +87,7 @@ function criaElementoEnviarWhats(){
             btnCancelar.className = 'botaoBox';
     
             novoConfirm = document.querySelector('#box');
-            novoConfirm.style.left =  (window.innerWidth/2) - (500 * .5)+"px";
+          //  novoConfirm.style.left =  (window.innerWidth/2) - (500 * .5)+"px";
             novoConfirm.style.top = '250px';
             novoConfirm.style.display = 'block';
             document.querySelector('#box').style.display = 'block';
