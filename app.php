@@ -15,6 +15,7 @@
                 <h2>Estância Das Cores</h1> 
                 <hr>      
           </div>
+
             <div class=" row justify-content-center  telaHome "> 
               <div>
                   <div class=" linha1 col ">
@@ -52,6 +53,8 @@
 </div>
         
                     <div id="contFiM" class="row tab ">                                          
+
+
                      </div>
                     
                         <div  class="row justify-content-center    nav"> </div>
@@ -74,7 +77,12 @@
 
          
 
+<<<<<<< HEAD
      
+=======
+
+        
+>>>>>>> 92affcdf292b772ab3bb10a0501c8c0bf9914808
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <script src="script/jquery-3.1.1.min.js" type="text/javascript"></script>

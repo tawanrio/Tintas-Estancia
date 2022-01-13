@@ -64,10 +64,12 @@ function criaElementoEnviarWhats(){
       
         
     }
+
   
     //criaElementoAll('div','.nav','div1','div1','div1 row ','');
     const enviarCont = document.createElement('a');
     enviarCont.href =`https://api.whatsapp.com/send?phone=5511985373835&text=${'Lista de compra:%0A'+conteudoEnviar}`;
+
     enviarCont.id='enviarCont';
     enviarCont.target='_blank';
     enviarCont.className='enviarCont row col-md-5 col-sm-10 mt-md-4 mt-sm-3';
@@ -111,7 +113,10 @@ function sendRemove(){
             btnCancelar.className = 'botaoBox';
     
             novoConfirm = document.querySelector('#box');
+
             novoConfirm.style.left =  (window.innerWidth/2) - (350 * .5)+"px";
+
+
             novoConfirm.style.top = '250px';
             novoConfirm.style.display = 'block';
            // document.querySelector('.principal').style.filter = 'blur(2px)';
