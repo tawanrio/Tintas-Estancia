@@ -1,4 +1,7 @@
-html{ margin-top: 0px;}
+*{
+    margin: 0px;
+    padding: 0px;
+}
 .principal{
     margin-top: -2px;
     border: solid black 2px;
@@ -28,9 +31,7 @@ html{ margin-top: 0px;}
     height: 10px;
     background-image: linear-gradient(to right, rgba(84, 70, 122, 0.8) 10%, rgb(0, 0, 0), rgba(84, 70, 122, 0.8)); 
 }
-.nav{
-    position: relative;
-}
+
 
 .txtAutoAten>h2{
     margin-top: -18px;

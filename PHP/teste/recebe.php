@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 define("SERVIDOR","localhost");
 define("USER", "root");
 define("SENHA", "");
@@ -21,7 +21,7 @@ function inserirDados($codigoL,$descricao,$unidade,$preco){
      $conexao->query($sql);
      $conexao->close();
  
- }
+ }*/
  
  $arq = scandir('listagem');
 

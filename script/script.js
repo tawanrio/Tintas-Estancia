@@ -1,7 +1,7 @@
-const nav = document.querySelector('.nav');
-const nav2 = document.querySelector('.nav2');
+const sectionButtons = document.querySelector('#sectionButtons');
+
 const navBusca = document.querySelector('#busca');
-const navResp = document.querySelector('#resposta');
+//const navResp = document.querySelector('#resposta');
 const navGuia = document.querySelector('.linha1');
 const carList = document.querySelector('#contFiM');
 var codigoFim;
@@ -18,10 +18,10 @@ var codigoPhp ;
 telaIni();
 telaNavBar();
 navBusca.style.display = 'none';
-navResp.style.display = 'none';
+//navResp.style.display = 'none';
 
  function btnVoltar(){
-    criaElementoBtnVoltar('voltar','.nav2');
+    criaElementoBtnVoltar('voltar','#sectionButtons');
     document.querySelector('#voltar').addEventListener('click', function(){
         telaIni();
             
@@ -33,7 +33,7 @@ function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     nomeVar.id=nomeId;
     nomeVar.className=nomeClass +'  botao col-md-10 col-sm-10 rounded-pill';
     nomeVar.innerHTML=texto;
-    nav.insertAdjacentElement('beforeend', nomeVar);
+    sectionButtons.insertAdjacentElement('beforeend', nomeVar);
     
 }
 function criaElementoBtnVoltar(nome,local){
@@ -66,7 +66,7 @@ function criaElementoEnviarWhats(){
     }
 
   
-    //criaElementoAll('div','.nav','div1','div1','div1 row ','');
+    //criaElementoAll('div','#sectionButtons','div1','div1','div1 row ','');
     const enviarCont = document.createElement('a');
     enviarCont.href =`https://api.whatsapp.com/send?phone=5511985373835&text=${'Lista de compra:%0A'+conteudoEnviar}`;
 
@@ -75,13 +75,13 @@ function criaElementoEnviarWhats(){
     enviarCont.className='enviarCont row col-md-5 col-sm-10 mt-md-4 mt-sm-3';
     
     enviarCont.innerHTML='<button class="botao  enviarContBtn">Enviar</button>';
-    document.querySelector('.nav').insertAdjacentElement('beforeend', enviarCont);
+    document.querySelector('#sectionButtons').insertAdjacentElement('beforeend', enviarCont);
 }
 function sendRemove(){
   
     criaElementoEnviarWhats();
    //a gambiarra abaixo serve somente pra deixa o botão igual ao elemento de cima 
-    criaElementoAll('a','.nav','limpaLista','limpaLista','enviarCont row col-md-5 col-sm-10 mt-md-4 ','<button class="botao  enviarContBtn">Limpar Lista?</button>');
+    criaElementoAll('a','#sectionButtons','limpaLista','limpaLista','enviarCont row col-md-5 col-sm-10 mt-md-4 ','<button class="botao  enviarContBtn">Limpar Lista?</button>');
     btnVoltar();
     
     document.querySelector('#limpaLista').addEventListener('click', function(){
@@ -261,12 +261,12 @@ function reset(){
     codigoLocal = [];
     codigoLocal =[];
     carList.style.display = 'none';
-    nav.innerHTML="";
-    nav2.innerHTML= "";
-    document.querySelector('#resposta').innerHTML='';
+    sectionButtons.innerHTML="";
+    //nav2.innerHTML= "";
+    document.querySelector('#busca').innerHTML='';
     document.querySelector('#voltarIni').innerHTML='';
     navGuia.innerHTML = '';
-    navResp.innerHTML='';
+  //  navResp.innerHTML='';
 }
 
 
@@ -307,10 +307,10 @@ function paginacao(){
                     data:{data: codigoPhp,
                          numero: numPag},
                          success: function(resposta){
-                             $("#resposta").html(resposta);
+                             $("#busca").html(resposta);
                             },     
                 error: function(){
-                    $("#resposta").html("Erro ajax");
+                    $("#busca").html("Erro ajax");
                 }
                 });
             }                                  
@@ -330,10 +330,10 @@ function paginacao(){
                     data:{data: codigoPhp,
                          numero: numPag},
                    success: function(resposta){
-                    $("#resposta").html(resposta);
+                    $("#busca").html(resposta);
                 },     
                 error: function(){
-                    $("#resposta").html("Erro ajax");
+                    $("#busca").html("Erro ajax");
                 }
                 });
             }                       
@@ -345,9 +345,9 @@ function listaProd(){
    paginacao();
         
     
-    navResp.style.display = 'block';
+  //  navResp.style.display = 'block';
     navBusca.style.display = 'block';
-     criaElementoAll('table','.nav','table','tab','table  ','<td class="col-6 fs-6 text-center"><b>Descricao</td><td class="col-3 fs-6  text-center"><b>Unidade</td><td class="col-3 fs-6  text-center"><b>Preço</td>');
+     criaElementoAll('table','#sectionButtons','table','tab','table  ','<td class="col-6 fs-6 text-center"><b>Descricao</td><td class="col-3 fs-6  text-center"><b>Unidade</td><td class="col-3 fs-6  text-center"><b>Preço</td>');
          codigoPhp = JSON.stringify(codigoFim);
         $.ajax({
             url:"PHP/recebeDados.php",
@@ -355,10 +355,10 @@ function listaProd(){
            data:{data: codigoPhp,
                  numero: numPag},
            success: function(resposta){
-            $("#resposta").html(resposta);
+            $("#busca").html(resposta);
         },     
         error: function(){
-            $("#resposta").html("Erro ajax");
+            $("#busca").html("Erro ajax");
         }
         
         });  
@@ -412,3 +412,4 @@ function listaProd(){
         }  
         //console.log(codgL);   
    }  
+  
