@@ -118,7 +118,7 @@ function sendRemove(){
          })
 
          novoConfirm = document.querySelector('#box');
-         novoConfirm.style.top = '250px';
+         novoConfirm.style.top = '20%';
          novoConfirm.style.display = 'block';
          document.querySelector('#box').style.display = 'block';
          document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
@@ -153,12 +153,11 @@ function sendRemove(){
          criaElementoAll('div', '#box', 'boxFoot', 'boxFoot', 'boxFoot', '');
          novoAlert = document.querySelector('#box');
          novoAlert.style.display = 'block';
-         novoAlert.style.top = '250px';
+         novoAlert.style.top = '20%';
          document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
          document.querySelector('#boxBody').innerHTML = texto;
          document.querySelector('#boxFoot').innerHTML = '<button class="botaoBox" onclick="Alert.ok()">OK</button>'
-         //novoAlert.style.left = (window.innerWidth/2) - (350 * .5)+"px";
-         //  novoAlert.style.left = (document.querySelector(local).innerWidth/2)  +"px";
+         //novoAlert.style.left = (document.querySelector(local).innerWidth/2)  +"px";
          //document.querySelector('.container').style.filter = 'blur(2px)';        
          // document.querySelector('.vidro').style.display = 'block';
      }
