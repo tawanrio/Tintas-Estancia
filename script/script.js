@@ -1,5 +1,4 @@
 const sectionButtons = document.querySelector('#sectionButtons');
-
 const navBusca = document.querySelector('#busca');
 //const navResp = document.querySelector('#resposta');
 const navGuia = document.querySelector('.linha1');
@@ -16,7 +15,7 @@ var codigoPhp ;
 
 
 telaIni();
-telaNavBar();
+//telaNavBar();
 navBusca.style.display = 'none';
 //navResp.style.display = 'none';
 
@@ -86,81 +85,91 @@ function sendRemove(){
     
     document.querySelector('#limpaLista').addEventListener('click', function(){
        
-        confirm.cod(`Tem certeza que deseja limpar sua lista de compras?`, function(){
+        confirm.cod(`Tem certeza que deseja limpar sua lista de compras?`,'.telaHome', function(){
             
             if(retConfirm == true){
                 codgL=[[],[],[],[],[]];
                
                 telaIni();
-                Alert.cod('Lista limpa com sucesso!');
+                Alert.cod('Lista limpa com sucesso!','.telaHome');
           
             }});
     })
 }
 
- function novoConfirm(){
-            this.cod = function(texto, callback){
+ function novoConfirm() {
+     this.cod = function (texto, local, callback) {
+         criaElementoAll('div', local, 'box', 'box', 'box col-10', '');
+         criaElementoAll('div', '#box', 'boxHead', 'boxHead', 'boxHead', '');
+         criaElementoAll('div', '#box', 'boxBody', 'boxBody', 'boxBody', '');
+         criaElementoAll('div', '#box', 'boxFoot', 'boxFoot', 'boxFoot', '');
 
+         const btnConfirmar = document.createElement("button");
+         btnConfirmar.textContent = 'Confirmar';
+         btnConfirmar.className = 'botaoBox';
+         btnConfirmar.addEventListener('click', function () {
+             confirm.confirmar(callback)
+         })
+         const btnCancelar = document.createElement("button");
+         btnCancelar.textContent = 'Cancelar';
+         btnCancelar.className = 'botaoBox';
+         btnCancelar.addEventListener('click', () => {
+             confirm.cancelar(callback)
+         })
 
-            const btnConfirmar = document.createElement("button");
-            btnConfirmar.textContent = 'Confirmar';
-            btnConfirmar.addEventListener('click',	function(){confirm.confirmar(callback)})
-            btnConfirmar.className = 'botaoBox';
-                    
-            const btnCancelar = document.createElement("button");
-            btnCancelar.textContent = 'Cancelar';
-            btnCancelar.addEventListener('click', () => {confirm.cancelar(callback)})
-            btnCancelar.className = 'botaoBox';
-    
-            novoConfirm = document.querySelector('#box');
-
-            novoConfirm.style.left =  (window.innerWidth/2) - (350 * .5)+"px";
-
-
-            novoConfirm.style.top = '250px';
-            novoConfirm.style.display = 'block';
-           // document.querySelector('.principal').style.filter = 'blur(2px)';
-          //  document.querySelector('.vidro').style.display = 'block';
-            document.querySelector('#box').style.display = 'block';
-            document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
-            document.querySelector('#boxBody').innerHTML = texto;
-            document.querySelector('#boxFoot').innerHTML = '';
-            document.querySelector('#boxFoot').insertAdjacentElement("beforeend",btnConfirmar);
-            document.querySelector('#boxFoot').insertAdjacentElement("beforeend",btnCancelar);
-        }
-        this.confirmar = function(callback){
-            document.querySelector('#box').style.display = 'none';
-            document.querySelector('.principal').style.filter = 'none';
-          //  document.querySelector('.vidro').style.display = 'none';
-            callback(retConfirm = true);
-        }
-        this.cancelar = function(callback){
-            document.querySelector('.principal').style.filter = 'none';
-            document.querySelector('#box').style.display = 'none';
+         novoConfirm = document.querySelector('#box');
+         novoConfirm.style.top = '250px';
+         novoConfirm.style.display = 'block';
+         document.querySelector('#box').style.display = 'block';
+         document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
+         document.querySelector('#boxBody').innerHTML = texto;
+         document.querySelector('#boxFoot').innerHTML = '';
+         document.querySelector('#boxFoot').insertAdjacentElement("beforeend", btnConfirmar);
+         document.querySelector('#boxFoot').insertAdjacentElement("beforeend", btnCancelar);
+         // document.querySelector('.principal').style.filter = 'blur(2px)';
+         //  document.querySelector('.vidro').style.display = 'block';
+     }
+     this.confirmar = function (callback) {
+         let element = document.querySelector('#box')
+         element.parentNode.removeChild(element);
+         // document.querySelector('.principal').style.filter = 'none';
+         //  document.querySelector('.vidro').style.display = 'none';
+         callback(retConfirm = true);
+     }
+     this.cancelar = function (callback) {
+         let element = document.querySelector('#box')
+         element.parentNode.removeChild(element);
+         //  document.querySelector('.principal').style.filter = 'none';
          //   document.querySelector('.vidro').style.display = 'none';
-            callback(retConfirm = false);
-        }
-    }
+         callback(retConfirm = false);
+     }
+ }
 
-    function novoAlert(){
-        this.cod = function(texto){
-            novoAlert = document.querySelector('#box');
-            novoAlert.style.left = (window.innerWidth/2) - (350 * .5)+"px";
-            novoAlert.style.top = '250px';
-            novoAlert.style.display = 'block';
-         //   document.querySelector('.principal').style.filter = 'blur(2px)';
-          //  document.querySelector('.vidro').style.display = 'block';
-            document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
-            document.querySelector('#boxBody').innerHTML = texto;
-            document.querySelector('#boxFoot').innerHTML = '<button class="botaoBox" onclick="Alert.ok()">OK</button>'	
-        }
-        this.ok = function(){
-            document.querySelector('.principal').style.filter = 'none';
-            document.querySelector('#box').style.display = 'none';
+ function novoAlert() {
+     this.cod = function (texto, local) {
+         criaElementoAll('div', local, 'box', 'box', 'box col-10', '');
+         criaElementoAll('div', '#box', 'boxHead', 'boxHead', 'boxHead', '');
+         criaElementoAll('div', '#box', 'boxBody', 'boxBody', 'boxBody', '');
+         criaElementoAll('div', '#box', 'boxFoot', 'boxFoot', 'boxFoot', '');
+         novoAlert = document.querySelector('#box');
+         novoAlert.style.display = 'block';
+         novoAlert.style.top = '250px';
+         document.querySelector('#boxHead').innerHTML = "ATENÇÃO";
+         document.querySelector('#boxBody').innerHTML = texto;
+         document.querySelector('#boxFoot').innerHTML = '<button class="botaoBox" onclick="Alert.ok()">OK</button>'
+         //novoAlert.style.left = (window.innerWidth/2) - (350 * .5)+"px";
+         //  novoAlert.style.left = (document.querySelector(local).innerWidth/2)  +"px";
+         //document.querySelector('.container').style.filter = 'blur(2px)';        
+         // document.querySelector('.vidro').style.display = 'block';
+     }
+     this.ok = function () {
+         let element = document.querySelector('#box')
+         element.parentNode.removeChild(element);
+         //  document.querySelector('#box').style.display = 'none';
+         //  document.querySelector('.principal').style.filter = 'none';
          //   document.querySelector('.vidro').style.display = 'none';
-        }
-    }
-   
+     }
+ }
 
 function funCodigoLocal(codigoItem){
     
@@ -177,12 +186,12 @@ function buscaItem(){
 
 
 function remove(param){
-    confirm.cod(`Deseja remover: ${codgL[2][codgL[0].indexOf(param)]} <br>da sua lista de compra?`, function(){
+    confirm.cod(`Deseja remover: ${codgL[2][codgL[0].indexOf(param)]} <br>da sua lista de compra?`,'.telaHome','.telaHome', function(){
         if(retConfirm == true){
           
             let index = codgL[0].indexOf(param)
             if(index > -1){
-                Alert.cod(`Item removido com sucesso!`);
+                Alert.cod(`Item removido com sucesso!`,'.telaHome');
                 codgL[0].splice(index, 1);
                 codgL[1].splice(index , 1);
                 codgL[2].splice(index , 1);
@@ -199,7 +208,7 @@ function chamaAltera(indice){
     let valor = codgL[1][indice];
     
     confirm.cod(`Alterar Quantidade?<br><button class="alter" onclick="altera(false,${indice})"><</button>  ${codgL[1][indice]}  
-    <button class="alter" onclick="altera(true,${indice})">></button>`, function(){
+    <button class="alter" onclick="altera(true,${indice})">></button>`,'.telaHome', function(){
         
         if(retConfirm == true){
             criaLista();
@@ -272,7 +281,7 @@ function reset(){
 
 function telaCarrinho(){
     if(codgL[0] == ''){
-        Alert.cod('Não há produtos em sua lista');
+        Alert.cod('Não há produtos em sua lista','.telaHome');
       telaIni();
          
       }else{
@@ -378,7 +387,7 @@ function listaProd(){
         
         let valor = codgL[1][codgL[0].indexOf(codigo)];
     confirm.cod(`Alterar Quantidade?<br><button class="alter" onclick="altera(false,${codgL[0].indexOf(codigo)})"><</button>  ${codgL[1][codgL[0].indexOf(codigo)]}  
-    <button class="alter" onclick="altera(true,${codgL[0].indexOf(codigo)})">></button>`, function(){
+    <button class="alter" onclick="altera(true,${codgL[0].indexOf(codigo)})">></button>`,'.telaHome', function(){
         
         if(retConfirm == true){
            
@@ -389,7 +398,7 @@ function listaProd(){
     });
                  
          } else {
-            confirm.cod(`Deseja inserir o item: ${descricao}<br> à sua lista?`, function(){
+            confirm.cod(`Deseja inserir o item: ${descricao}<br> à sua lista?`,'.telaHome', function(){
                             
                 if(retConfirm == true){
                    
@@ -400,12 +409,12 @@ function listaProd(){
                     codgL[4].push(preco.replace(",",".")); 
 
                     confirm.cod(`Alterar Quantidade?<br><button class="alter" onclick="altera(false,${codgL[0].indexOf(codigo)})"><</button>  ${codgL[1][codgL[0].indexOf(codigo)]}  
-                    <button class="alter" onclick="altera(true,${codgL[0].indexOf(codigo)})">></button>`, function(){
+                    <button class="alter" onclick="altera(true,${codgL[0].indexOf(codigo)})">></button>`,'.telaHome', function(){
                         
                         if(retConfirm == true){ }});
                 
                 }else{
-                    Alert.cod('Falha ao inserir o item à lista!');
+                    Alert.cod('Falha ao inserir o item à lista!','.telaHome');
                 }
             });
             

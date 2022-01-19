@@ -24,13 +24,17 @@
             <nav class="navbar navbarsty navbar-light col-md-11 col-sm-12">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#"></a>
-                    <button class="navbar-toggler collap" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <button class="navbar-toggler collap" type="button" onclick="telaNavBar()" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="menunavbar offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header ">
-                            <h5 class="offcanvas-titlec " id="offcanvasNavbarLabel">Menu</h5>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    <div class="menunavbar offcanvas offcanvas-end"  tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header row justify-content-center">
+                            <div class="row">
+                                <button type="button" class="btn-close col btn-outline-light offset-10 text-reset" onclick="resetTelaNavBar();" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="row">
+                                <h5 class="offcanvas-titlec text-center col" id="offcanvasNavbarLabel">Menu</h5>
+                            </div>
                         </div>
                         <!-- CORPO DO MENU -->
                         <section class="offcanvas-body">
@@ -40,14 +44,7 @@
                     </div>
                 </div>
             </nav>
-            <!-- FIM MENU LATERAL -->
-
-            <!-- CAIXA DE ALERTA PERSONALIZADO -->
-            <div id='box' class=" justify-content-center">
-                <div id="boxHead"></div>
-                <div id="boxBody"></div>
-                <div id="boxFoot"></div>
-            </div>
+            <!-- FIM MENU LATERAL -->        
 
             <!-- LISTA DE COMPRA -->
             <div id="contFiM" class="row tab "> </div>
