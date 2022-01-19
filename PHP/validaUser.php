@@ -1,44 +1,30 @@
 <?php
 include_once('conexao.php');
+session_start();
 
 $validaUser = isset($_POST['login']) ? $_POST['login']: 1;
 $validaPass = isset($_POST['pass']) ? $_POST['pass']: 1;
 
-//$query = "INSERT INTO usuarios (id,nome,email,senha) VALUE (DEFAULT,"
-//echo $validaeUser;
-$query = "SELECT * FROM usuarios WHERE login like '$validaUser' AND  pass = '$validaPass';";
-//print_r($validaUser);  
-
-$teste = $pdo->query($query);
-
-$resultado = $teste->fetch();
-
- if(!empty($resultado)){
-    ?>
-<script>
-    <?php echo "telaAdm();"; ?>
+$query = "SELECT login,pass FROM usuarios WHERE login like '$validaUser' AND  pass = '$validaPass';";
+$consulta = $pdo->query($query);
+$resultado = $consulta->fetch();
+ 
+if(!empty($resultado)){
     
-</script>
-<?php
-    }else{
-        
+    $_SESSION['user'] = $validaUser;
+    $_SESSION['pass'] = $validaPass;
+    $_SESSION['logged'] = true;
+    //$status = isset($_SESSION['logged']);
+     
+    echo "logado com sucesso!";
+    
+}else{
+        echo "falha no login";
 ?>
 <script>
-    <?php echo "telaNavBar();Alert.cod('Úsuario ou Senha inválido!','.offcanvas-body');"; ?>
+    <?php echo "verificaLogin();Alert.cod('ÚSUARIO OU SENHA INVALIDO!','.offcanvas-body');"; ?>
     
 </script>
 <?php
-
-
  }
-//echo $resultado . 'teste';
-/*
-while($resultado = $teste->fetch()){
 
-    print_r($resultado['login']);
-}
-
-
-
-*/
-?>

@@ -1,9 +1,4 @@
 
-function telaNavBar(){
-    criaElementoAll('div','.offcanvas-body','login','login botao','login',login);
-    validaForm();
-    
-}
 
 function telaIni(){
     reset();

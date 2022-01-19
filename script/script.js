@@ -15,7 +15,7 @@ var codigoPhp ;
 
 
 telaIni();
-//telaNavBar();
+
 navBusca.style.display = 'none';
 //navResp.style.display = 'none';
 
