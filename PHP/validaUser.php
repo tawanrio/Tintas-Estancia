@@ -15,11 +15,12 @@ if(!empty($resultado)){
     $_SESSION['pass'] = $validaPass;
     $_SESSION['logged'] = true;
     //$status = isset($_SESSION['logged']);
-     
-    echo "logado com sucesso!";
-    
+
+    ?><script>
+    <?php echo  'telaAdm();'  ?>
+    </script><?php
+  
 }else{
-        echo "falha no login";
 ?>
 <script>
     <?php echo "verificaLogin();Alert.cod('ÚSUARIO OU SENHA INVALIDO!','.offcanvas-body');"; ?>

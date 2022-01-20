@@ -9,7 +9,8 @@ var retConfirm;
 var codgL=[[],[],[],[],[]];
 var confirm = new novoConfirm(); // cria novo confirm personalizado
 var Alert = new novoAlert(); // Cria novo alert personalizado
-
+var classBtn= 'botao col-md-10 col-sm-10 rounded-pill';
+var classBtnAdm ='botaoAdm col-md-10 col-sm-10 rounded-pill';
 var codigoPhp ;
 
 
@@ -30,22 +31,24 @@ navBusca.style.display = 'none';
 function criaElementoBtn(nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement("BUTTON");
     nomeVar.id=nomeId;
-    nomeVar.className=nomeClass +'  botao col-md-10 col-sm-10 rounded-pill';
+    nomeVar.className=nomeClass + classBtn;
     nomeVar.innerHTML=texto;
     sectionButtons.insertAdjacentElement('beforeend', nomeVar);
     
 }
+
 function criaElementoBtnVoltar(nome,local){
     var nome = document.createElement("BUTTON");
     nome.id='voltar';
-    nome.className='botao col-7 text-center  rounded-pill';
+    nome.className=classBtn;
     nome.style.display = 'block';
     nome.type="button";
     nome.innerHTML='Voltar';
     document.querySelector(local).insertAdjacentElement('beforeend', nome);
 }
 
-function criaElementoAll(tipo,local,nomeVar,nomeId,nomeClass,texto){
+function criaElementoAll({tipo,local,nomeVar,nomeId,nomeClass,texto}){
+//function criaElementoAll(tipo,local,nomeVar,nomeId,nomeClass,texto){
     var nomeVar = document.createElement(tipo);
     nomeVar.id=nomeId;
     nomeVar.className=nomeClass;
@@ -80,7 +83,7 @@ function sendRemove(){
   
     criaElementoEnviarWhats();
    //a gambiarra abaixo serve somente pra deixa o botão igual ao elemento de cima 
-    criaElementoAll('a','#sectionButtons','limpaLista','limpaLista','enviarCont row col-md-5 col-sm-10 mt-md-4 ','<button class="botao  enviarContBtn">Limpar Lista?</button>');
+    criaElementoAll({tipo:'a',local:'#sectionButtons',nomeVar:'limpaLista',nomeId:'limpaLista',nomeClass:'enviarCont row col-md-5 col-sm-10 mt-md-4 ',texto:'<button class="botao  enviarContBtn">Limpar Lista?</button>'});
     btnVoltar();
     
     document.querySelector('#limpaLista').addEventListener('click', function(){
@@ -99,10 +102,10 @@ function sendRemove(){
 
  function novoConfirm() {
      this.cod = function (texto, local, callback) {
-         criaElementoAll('div', local, 'box', 'box', 'box col-10', '');
-         criaElementoAll('div', '#box', 'boxHead', 'boxHead', 'boxHead', '');
-         criaElementoAll('div', '#box', 'boxBody', 'boxBody', 'boxBody', '');
-         criaElementoAll('div', '#box', 'boxFoot', 'boxFoot', 'boxFoot', '');
+        criaElementoAll({tipo:'div',local:local, nomeVar:'box',nomeId:'box',nomeClass:'box col-10',texto:''});
+        criaElementoAll({tipo:'div',local:'#box',nomeVar:'boxHead',nomeId:'boxHead',nomeClass:'boxHead',texto:''});
+        criaElementoAll({tipo:'div',local:'#box',nomeVar:'boxBody',nomeId:'boxBody',nomeClass:'boxBody',texto:''});
+        criaElementoAll({tipo:'div',local:'#box',nomeVar:'boxFoot',nomeId:'boxFoot',nomeClass:'boxFoot',texto:''});
 
          const btnConfirmar = document.createElement("button");
          btnConfirmar.textContent = 'Confirmar';
@@ -146,11 +149,12 @@ function sendRemove(){
  }
 
  function novoAlert() {
-     this.cod = function (texto, local) {
-         criaElementoAll('div', local, 'box', 'box', 'box col-10', '');
-         criaElementoAll('div', '#box', 'boxHead', 'boxHead', 'boxHead', '');
-         criaElementoAll('div', '#box', 'boxBody', 'boxBody', 'boxBody', '');
-         criaElementoAll('div', '#box', 'boxFoot', 'boxFoot', 'boxFoot', '');
+     this.cod = function (texto,local) {
+        criaElementoAll({tipo:'div',local:local, nomeVar:'box',nomeId:'box',nomeClass:'box col-10',texto:''});
+        criaElementoAll({tipo:'div',local:'#box',nomeVar:'boxHead',nomeId:'boxHead',nomeClass:'boxHead',texto:''});
+        criaElementoAll({tipo:'div',local:'#box',nomeVar:'boxBody',nomeId:'boxBody',nomeClass:'boxBody',texto:''});
+        criaElementoAll({tipo:'div',local:'#box',nomeVar:'boxFoot',nomeId:'boxFoot',nomeClass:'boxFoot',texto:''});
+
          novoAlert = document.querySelector('#box');
          novoAlert.style.display = 'block';
          novoAlert.style.top = '20%';
@@ -234,11 +238,11 @@ function altera(param,indice){
 function criaLista(){
             
         document.querySelector('#contFiM').innerHTML = '';
-        criaElementoAll('div','#contFiM','descricaoList','descricaoList',' text-center  col-6','<b>Descrição');
-        criaElementoAll('div','#contFiM','unidadeList','unidadeList',' text-center col-1','<b>Un');
-        criaElementoAll('div','#contFiM','quantidadeList','quantidadeList',' text-center col-1','<b>Qnt');
-        criaElementoAll('div','#contFiM','precoUnList','precoUnList',' text-center col-2','<b>V.Unitario');
-        criaElementoAll('div','#contFiM','precoTotList','precoTotList',' text-center    col-2','<b>V.Total');
+        criaElementoAll({tipos:'div',local:'#contFiM',nomeVar:'descricaoList',nomeId:'descricaoList',nomeClass:' text-center  col-6',texto:'<b>Descrição'});
+        criaElementoAll({tipos:'div',local:'#contFiM',nomeVar:'unidadeList',nomeId:'unidadeList',nomeClass:' text-center col-1',texto:'<b>Un'});
+        criaElementoAll({tipos:'div',local:'#contFiM',nomeVar:'quantidadeList',nomeId:'quantidadeList',nomeClass:' text-center col-1',texto:'<b>Qnt'});
+        criaElementoAll({tipos:'div',local:'#contFiM',nomeVar:'precoUnList',nomeId:'precoUnList',nomeClass:' text-center col-2',texto:'<b>V.Unitario'});
+        criaElementoAll({tipos:'div',local:'#contFiM',nomeVar:'precoTotList',nomeId:'precoTotList',nomeClass:' text-center    col-2',texto:'<b>V.Total'});
         var precoFinal = 0;
         for (let i = 0; i < codgL[0].length; i++) {
             
@@ -258,7 +262,7 @@ function criaLista(){
            // console.log(precoFinal,typeof(precoFinal),totalUn);
         }
        
-        criaElementoAll('div','#contFiM','totalList','totalList','totalList text-end  fst-italic fw-bolder"> col-12  ',`Total: R$ ${precoFinal.toFixed(2)}`);
+        criaElementoAll({tipos:'div',local:'#contFiM',nomeVar:'totalList',nomeId:'totalList',nomeClass:'totalList text-end  fst-italic fw-bolder"> col-12  ',texto:`Total: R$ ${precoFinal.toFixed(2)}`});
     
 }
 
@@ -280,6 +284,7 @@ function reset(){
 
 function telaCarrinho(){
     if(codgL[0] == ''){
+       
         Alert.cod('Não há produtos em sua lista','.telaHome');
       telaIni();
          
@@ -295,9 +300,9 @@ function paginacao(){
      //variavel referente a paginação
      var numPag = 0;
      buscaItem();
-    criaElementoAll('div','#voltarIni','anterior','anterior','next col-6 text-center ','← Anterior'); 
-
-    criaElementoAll('div','#voltarIni','proximo','proximo','next col-6  text-center ','Proximo →'); 
+     
+     criaElementoAll({tipo:'div',local:'#voltarIni',nomeVar:'anterior',nomeId:'anterior',nomeClass:'next col-6 text-center ',texto:'← Anterior'}); 
+    criaElementoAll({tipo:'div',local:'#voltarIni',nomeVar:'proximo',nomeId:'proximo',nomeClass:'next col-6  text-center ',texto:'Proximo →'}); 
     
     document.querySelector('#anterior').style.cssText='color:rgb(126, 73, 73);cursor:auto';
 
@@ -355,7 +360,7 @@ function listaProd(){
     
   //  navResp.style.display = 'block';
     navBusca.style.display = 'block';
-     criaElementoAll('table','#sectionButtons','table','tab','table  ','<td class="col-6 fs-6 text-center"><b>Descricao</td><td class="col-3 fs-6  text-center"><b>Unidade</td><td class="col-3 fs-6  text-center"><b>Preço</td>');
+     criaElementoAll({tipo:'table',local:'#sectionButtons',nomeVar:'table',nomeId:'tab',nomeClass:'table',texto:'<td class="col-6 fs-6 text-center"><b>Descricao</td><td class="col-3 fs-6  text-center"><b>Unidade</td><td class="col-3 fs-6  text-center"><b>Preço</td>'});
          codigoPhp = JSON.stringify(codigoFim);
         $.ajax({
             url:"PHP/recebeDados.php",

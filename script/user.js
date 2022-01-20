@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".collap").click(function(){  
         $(".offcanvas-body").html('');
         $.ajax({
-            url: "PHP/teste.php",
+            url: "PHP/clickAbreMenu.php",
             cache: false,
             type:'post',
             data:{'click': true},
@@ -14,15 +14,14 @@ $(document).ready(function(){
         
     });
 });
-function verificaLogin(logged){
-  
-    if(logged){
-        telaAdm();
-    }else{
-        telaLogin();
-        validaForm();
-    }
-}
+// function verificaLogin(logged){
+//     if(logged){
+//         telaAdm();
+//     }else{
+//         telaLogin();
+//         validaForm();
+//     }
+// }
 function telaLogin(){
     const login = `
 <form class="text-center p-2 shadow  formNav rounded-3" method="post" id="formConsultarUsuario" >                           
@@ -31,17 +30,8 @@ function telaLogin(){
     <input class="formNavSubmit col-7 mt-1 btn btn-outline-dark" type="submit" id="btnConsultarUsuario" value="Entrar">
     <a class="row justify-content-center " href="#">Esqueceu a senha?</a>
 </form>`;
-    criaElementoAll('div','.offcanvas-body','login','login','login',login);
-}
-function telaAdm(){
-    criaElementoAll('div','.offcanvas-body','login','login','login','está informação e restrita!');
-}
-function resetTelaMenu(){
-   document.querySelector('.offcanvas-body').innerHTML = '';
-    
-}
+    criaElementoAll({tipo:'div',local:'.offcanvas-body',nomevar:'login',nommclass:'login',texto:`${login}`});
 
-function validaForm(){
     $("#formConsultarUsuario").submit(function () {
         //var formUser = new FormData($('#formConsultarUsuario')[0]);
         var formUser = jQuery(this).serialize();
@@ -60,6 +50,49 @@ function validaForm(){
         return false;
         
     });
+}
+function btnVoltarAdm(){
+
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'voltar',nomeVar:'voltar',nomeClass:classBtnAdm,texto:'Voltar'});
+    document.querySelector('#voltar').addEventListener('click', function(){
+        telaIni();
+        telaAdm();
+            
+    });
+ }
+function telaAdm(){
+    telaIni();
+    resetAdm();
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'config',nomeVar:'configuracao',nomeClass:classBtnAdm,texto:'Configuração'});
+    document.querySelector('#config').addEventListener('click', function(){
+      telaConfig();
+    });
+   
+}
+function telaConfig(){
+    reset();
+    resetAdm();
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'produtosConfig',nomeVar:'produtosConfig',nomeClass:classBtnAdm,texto:'Produtos'});
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'usuariosConfig',nomeVar:'usuariosConfig',nomeClass:classBtnAdm,texto:'Úsuarios'});
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'relatorios',nomeVar:'relatorios',nomeClass:classBtnAdm,texto:'Relatórios'});
+    btnVoltarAdm();
+
+    document.querySelector('#produtosConfig').addEventListener('click', function(){
+        telaProdConfig();
+      });
+
+    //criaElementoBtn('relatorio','relatorio','botao  opacity-50 btn btn-secondary disabled','Outros');
+    
+}
+function telaProdConfig(){
+    resetAdm();
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'cadastrarProd',nomeVar:'cadastrarProd',nomeClass:classBtnAdm,texto:'Cadastrar Produtos'});
+    criaElementoAll({tipo:'button',local:'#sectionButtonsAdm',nomeId:'alterarProd',nomeVar:'alterarProd',nomeClass:classBtnAdm,texto:'Alterar Produtos'});
+
+    btnVoltarAdm();
+}
+function resetAdm(){
+    document.querySelector('#sectionButtonsAdm').innerHTML = '';
 }
 
 

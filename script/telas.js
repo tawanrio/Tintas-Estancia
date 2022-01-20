@@ -7,6 +7,7 @@ function telaIni(){
     criaElementoBtn('servicos','serv','botao   col-5opacity-50 btn btn-secondary disabled','Serviços');
     criaElementoBtn('outrs','outr','botao  opacity-50 btn btn-secondary disabled','Outros');
     criaElementoBtn('carrinho','carrinho','botao ','Lista de Compras');
+   
 
     document.querySelector('#prod').addEventListener('click', function(){
         sectionButtons.innerHTML="";

@@ -52,6 +52,8 @@
 
             <!-- BOTÕES  -->
             <div class="row justify-content-center" id="sectionButtons"> </div>
+            <!-- BOTÕES ADM -->
+            <div class="row justify-content-center" id="sectionButtonsAdm"> </div>
           
             <!-- RETORNO CONSULTA -->
             <div id="busca" class="row ini "> </div>

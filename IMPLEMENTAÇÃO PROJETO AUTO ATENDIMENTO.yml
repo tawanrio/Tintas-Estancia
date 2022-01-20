@@ -1,0 +1,20 @@
+IMPLEMENTAÇÃO PROJETO AUTO ATENDIMENTO TINTAS ESTANCIA
+
+    Requisitos Funcionais
+        -area logout
+        -alterar senha de login
+        -criar novos usuarios
+        -deletar usuarios existentes
+        -alterar preço/nome/unidade/codigo dos produtos existentes
+        -adicionar novos produtos
+        -deletar produtos existentes
+        -adicionar coluna de quantidade de estoque na tabela produtos
+        -alterar quantidade no estoque
+        -importar tabela do Control Shop
+        -relatorio de acesso/orçamento
+
+    
+    Requisitos não Funcionais
+        -impedir venda de produtos com estoque/preço zerado
+        -realizar operação em lote e unitario
+        -enviar link da lista ao invez da lista

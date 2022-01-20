@@ -93,6 +93,19 @@
   font-size: 20px;
   color: white;
  }
+ .botaoAdm{
+    background-image: linear-gradient(to bottom right, rgb(31, 27, 49) 25%, rgb(29, 0, 196));
+    height: 50px;
+    border: solid rgb(57, 44, 175) 2px;
+
+    font-weight: bold;
+    margin: 10px;
+    font-size: 20px;
+    color: white;
+ }
+ .botaoAdm:hover{
+    background-image: linear-gradient(to bottom right,  rgba(29, 0, 196),rgba(31, 27, 49));
+ }
  .botao:hover,.resp:hover{
     background-image: linear-gradient(to bottom right,  rgba(180, 4, 4),rgba(21, 1, 78 ));
  }
